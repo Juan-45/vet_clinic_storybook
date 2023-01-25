@@ -2,11 +2,11 @@
 
 Basic implementation of storybook with react to use in future projects
 
-## Integrated libraries:
+## Main libraries:
 
 - Material UI
-- JEST
-- REACT TESTING LIBRARY
+- Jest
+- React Testing Library
 
 It already has a component as sample with its stories and tests.
 
