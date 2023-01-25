@@ -48,7 +48,7 @@ const RenderIf = ({ condition, children }) => {
 };
 
 const ListWrapper = styled(List)(({ theme }) => ({
-  borderRadius: theme.spacing(1),
+  borderRadius: theme.spacing(2),
   boxShadow: theme.shadows[3],
   border: `1px solid ${theme.palette.spacing}`,
   padding: theme.spacing(2),
