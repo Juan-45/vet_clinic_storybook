@@ -1,30 +1,16 @@
-# CRA with Storybook
+# Storybook & React
 
-This project was bootstrapped with
-[Create React App](https://github.com/facebook/create-react-app).
+Basic implementation of storybook with react to use in future projects
 
-## How Storybook was initialized
+## Tools
 
-Storybook was added using `sb init` without any options. This lets `sb init`
-detect CRA and add preset-create-react-app and the webpack5 builder
-automatically:
+- MUI
+- JEST
+- REACT TESTING LIBRARY
 
-```shell
-npx sb init
-```
+It already has a component as sample with its stories and tests.
 
-After this I had to add the following overrides to `package.json` to overcome
-dependency conflicts:
-
-```json
-{
-  "overrides": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-refresh": "0.13.0"
-  }
-}
-```
+It's all ready to start building components.
 
 ## Running Storybook
 
@@ -36,4 +22,10 @@ npm run storybook
 
 ```shell
 npm start
+```
+
+## Running tests
+
+```shell
+npm run test
 ```
