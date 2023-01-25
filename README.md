@@ -23,3 +23,9 @@ npm run storybook
 ```shell
 npm start
 ```
+
+## Running tests
+
+```shell
+npm run test
+```
