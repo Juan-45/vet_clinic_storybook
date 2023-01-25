@@ -2,9 +2,9 @@
 
 Basic implementation of storybook with react to use in future projects
 
-## Tools
+## Integrated libraries:
 
-- MUI
+- Material UI
 - JEST
 - REACT TESTING LIBRARY
 
@@ -14,7 +14,7 @@ It's all ready to start building components.
 
 ## Continuously deploy Storybook on Chromatic on every push:
 
-https://63d15aa8083c03749a1eabf7-ysbaqsncin.chromatic.com/?path=/story/example-introduction--page
+Make sure that in every clone of this repo you set GitHub actions and the secret key obteined from chromatic after adding a new project.
 
 ## Running Storybook
 
