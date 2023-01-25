@@ -60,7 +60,7 @@ const Item = styled(ListItem)(({ theme }) => ({
   border: "1px solid gray",
   "&:hover": {
     background: theme.palette.ternary.main,
-    border: `1px solid ${theme.palette.secondary.main}`,
+    border: `1px solid ${theme.palette.primary.main}`,
   },
 }));
 
