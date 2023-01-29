@@ -1,20 +1,20 @@
-# Storybook & React
+# Project: Vet clinic storybook
 
 Basic implementation of storybook with react to use in future projects
 
-## Main libraries:
+## Basic:
 
-- Material UI
-- Jest
-- React Testing Library
+- I started from a basic sotrybook app. 
+[Original repository](https://github.com/Juan-45/storybook_react)
 
-It already has a component as sample with its stories and tests.
+It'll hold the layout components for a portfolio project, a Vet Clinic frontend. 
 
-It's all ready to start building components.
+## Workflow. How to explore this repository?
 
-## Continuously deploy Storybook on Chromatic on every push:
-
-Make sure that in every clone of this repo you set GitHub actions and the secret key obteined from chromatic after adding a new project.
+- The master branch will hold ready for production code.
+- The develop branch will hold already done features.
+- Each main components, like footer, nav bar, etc, will be developed in its own branch. Each feature branch will be named as follow: "feature_" + featureName. Each feature branch will be merged against the develop branch.
+- Any necessary fix to be made will be developed on a "hotFix" branch, which will be named as follow: "hotFix_" + bug + component. Each of this branches will be merged against the master branch.
 
 ## Running Storybook
 
