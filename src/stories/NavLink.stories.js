@@ -26,14 +26,6 @@ const Template = (args) => <NavLink {...args} />;
 
 export const Playground = Template.bind({});
 
-export const NavLinkHover = Template.bind({});
-
-NavLinkHover.args = {
-  active: true,
-  to: "/?path=/story/stories-navlink--nav-link-hover",
-  label: "onHover",
-};
-
 export const NavLinkActive = Template.bind({});
 
 NavLinkActive.args = {
