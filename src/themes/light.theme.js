@@ -9,5 +9,8 @@ export const lightTheme = createTheme({
     secondary: {
       main: "#7FA7C3",
     },
+    ternary: {
+      main: "#cf7373",
+    },
   },
 });
