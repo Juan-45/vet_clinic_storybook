@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 
-const TRANSITION_TIME = 0.25;
-const MOBILE_TRANSITION_TIME = 0.5;
+const TRANSITION_TIME = 0.1;
+const MOBILE_TRANSITION_TIME = 0.25;
 
 const StyledLink = styled(Link)(({ theme }) => ({
   display: "inline-block",
   position: "relative",
   height: "initial",
   marginBottom: "0px",
-  padding: `${theme.spacing(1)} ${theme.spacing(3)}`,
+  padding: `${theme.spacing(0.5)} ${theme.spacing(1)}`,
+  marginTop: theme.spacing(1),
   lineHeight: 1.4,
   cursor: "pointer",
   color: theme.palette.text.primary,
@@ -33,6 +34,14 @@ const StyledLink = styled(Link)(({ theme }) => ({
 const StyledLinkDesktop = styled(StyledLink, {
   shouldForwardProp: (prop) => prop !== "active",
 })(({ theme, active }) => ({
+  transition: "margin 0.25s ease",
+  marginLeft: active ? theme.spacing(1.2) : "none",
+  marginRight: active ? theme.spacing(3) : theme.spacing(1),
+
+  "&:hover": {
+    marginLeft: theme.spacing(1.2),
+    marginRight: theme.spacing(3),
+  },
   "&::after": {
     transform: active ? "skew(-25deg)" : "unset",
     transition: `transform ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s, box-shadow ${TRANSITION_TIME}s ease`,
@@ -63,6 +72,8 @@ const StyledLinkDesktop = styled(StyledLink, {
 const StyledLinkMobile = styled(StyledLink, {
   shouldForwardProp: (prop) => prop !== "active",
 })(({ theme, active }) => ({
+  marginLeft: theme.spacing(1.2),
+  marginRight: theme.spacing(3),
   "&::after": {
     transform: "skew(-25deg)",
     transition: `box-shadow ${MOBILE_TRANSITION_TIME}s ease`,
@@ -73,7 +84,7 @@ const StyledLinkMobile = styled(StyledLink, {
   },
   "&::before": {
     bottom: 0,
-    left: "-8px",
+    left: "-6px",
     height: "3px",
     width: active ? "100%" : "0%",
     transform: "skew(-25deg)",
