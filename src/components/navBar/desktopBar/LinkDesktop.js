@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { StyledLinkDesktop } from "../Styles.js";
 
-const LinkDesktop = ({ label, to, ...props }) => {
+const LinkDesktop = ({ children, to, ...props }) => {
   return (
     <StyledLinkDesktop to={to} {...props}>
-      {label}
+      {children}
     </StyledLinkDesktop>
   );
 };
@@ -12,7 +12,6 @@ const LinkDesktop = ({ label, to, ...props }) => {
 LinkDesktop.propTypes = {
   active: PropTypes.bool,
   to: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
 };
 
 LinkDesktop.defaultProps = {

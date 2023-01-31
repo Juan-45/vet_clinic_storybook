@@ -14,10 +14,10 @@ export default {
       control: { type: "text" },
       description: "Path value",
     },
-    label: {
+    children: {
       defaultValue: "Página 1",
       control: { type: "text" },
-      description: "Label",
+      description: "Children",
     },
   },
 };
@@ -31,7 +31,7 @@ export const LinkMobileActive = Template.bind({});
 LinkMobileActive.args = {
   active: true,
   to: "/?path=/story/stories-linkmobile--nav-link-active",
-  label: "active",
+  children: "active",
 };
 
 export const LinkMobileExternal = Template.bind({});
@@ -39,6 +39,6 @@ export const LinkMobileExternal = Template.bind({});
 LinkMobileExternal.args = {
   active: false,
   to: "/?path=/story/stories-linkmobile--nav-link-external",
-  label: "external",
+  children: "external",
   target: "_blank",
 };
