@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
+import { transform } from "@babel/core";
 
 const TRANSITION_TIME = 0.25;
 
@@ -25,6 +26,8 @@ const getStyles = ({ theme, active }) => ({
     width: "100%",
     background: theme.palette.primary.main,
     transition: `transform ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s, box-shadow ${TRANSITION_TIME}s ease`,
+    boxShadow: active ? theme.shadows[2] : "unset",
+    transform: active ? "skew(-25deg)" : "unset",
   },
 
   "&:hover:after": {
@@ -41,8 +44,9 @@ const getStyles = ({ theme, active }) => ({
     left: 0,
     height: "100%",
     width: "100%",
-    transform: "skew(-25deg)",
+    transform: active ? "skew(-25deg) translate(8px, -8px)" : "skew(-25deg)",
     transition: `transform ${TRANSITION_TIME}s ease, background 0s ${TRANSITION_TIME}s`,
+    background: active ? theme.palette.secondary.main : "unset",
   },
 
   "&:hover:before": {
