@@ -1,10 +1,10 @@
-import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 
 const TRANSITION_TIME = 0.25;
+const MOBILE_TRANSITION_TIME = 0.5;
 
-const getStyles = ({ theme, active }) => ({
+const StyledLink = styled(Link)(({ theme }) => ({
   display: "inline-block",
   position: "relative",
   height: "initial",
@@ -14,7 +14,6 @@ const getStyles = ({ theme, active }) => ({
   cursor: "pointer",
   color: theme.palette.text.primary,
   textDecoration: "unset",
-
   "&::after": {
     position: "absolute",
     zIndex: "-1",
@@ -24,21 +23,28 @@ const getStyles = ({ theme, active }) => ({
     height: "100%",
     width: "100%",
     background: theme.palette.primary.main,
+  },
+  "&::before": {
+    position: "absolute",
+    content: "''",
+  },
+}));
+
+const StyledLinkDesktop = styled(StyledLink, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(({ theme, active }) => ({
+  "&::after": {
+    transform: active ? "skew(-25deg)" : "unset",
     transition: `transform ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s, box-shadow ${TRANSITION_TIME}s ease`,
     boxShadow: active ? theme.shadows[2] : "unset",
-    transform: active ? "skew(-25deg)" : "unset",
   },
-
   "&:hover:after": {
     transition: `transform ${TRANSITION_TIME}s ease, box-shadow ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s`,
     boxShadow: theme.shadows[2],
     transform: "skew(-25deg)",
   },
-
   "&::before": {
-    position: "absolute",
     zIndex: "-2",
-    content: "''",
     top: 0,
     left: 0,
     height: "100%",
@@ -47,34 +53,36 @@ const getStyles = ({ theme, active }) => ({
     transition: `transform ${TRANSITION_TIME}s ease, background 0s ${TRANSITION_TIME}s`,
     background: active ? theme.palette.secondary.main : "unset",
   },
-
   "&:hover:before": {
     transition: `transform ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s, background 0s ${TRANSITION_TIME}s`,
     background: theme.palette.secondary.main,
     transform: "skew(-25deg) translate(8px, -8px)",
   },
-});
+}));
 
-const LinkStyled = styled(Link, {
+const StyledLinkMobile = styled(StyledLink, {
   shouldForwardProp: (prop) => prop !== "active",
-})(getStyles);
+})(({ theme, active }) => ({
+  "&::after": {
+    transform: "skew(-25deg)",
+    transition: `box-shadow ${MOBILE_TRANSITION_TIME}s ease`,
+    boxShadow: active ? theme.shadows[6] : theme.shadows[2],
+  },
+  "&:hover:after": {
+    boxShadow: theme.shadows[6],
+  },
+  "&::before": {
+    bottom: 0,
+    left: "-8px",
+    height: "3px",
+    width: active ? "100%" : "0%",
+    transform: "skew(-25deg)",
+    transition: `width ${MOBILE_TRANSITION_TIME}s ease`,
+    background: theme.palette.ternary.main,
+  },
+  "&:hover:before": {
+    width: "100%",
+  },
+}));
 
-const NavLink = ({ label, to, ...props }) => {
-  return (
-    <LinkStyled to={to} {...props}>
-      {label}
-    </LinkStyled>
-  );
-};
-
-NavLink.propTypes = {
-  active: PropTypes.bool,
-  to: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-};
-
-NavLink.defaultProps = {
-  active: false,
-};
-
-export default NavLink;
+export { StyledLinkDesktop, StyledLinkMobile };

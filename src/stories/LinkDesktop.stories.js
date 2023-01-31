@@ -1,8 +1,8 @@
 import React from "react";
-import NavLink from "components/navBar/desktopBar/NavLink";
+import LinkDesktop from "components/navBar/desktopBar/LinkDesktop";
 
 export default {
-  component: NavLink,
+  component: LinkDesktop,
   argTypes: {
     active: {
       defaultValue: false,
@@ -10,7 +10,7 @@ export default {
       control: { type: "boolean" },
     },
     to: {
-      defaultValue: "/?path=/story/stories-navlink--playground",
+      defaultValue: "/?path=/story/stories-linkdesktop--playground",
       control: { type: "text" },
       description: "Path value",
     },
@@ -22,23 +22,23 @@ export default {
   },
 };
 
-const Template = (args) => <NavLink {...args} />;
+const Template = (args) => <LinkDesktop {...args} />;
 
 export const Playground = Template.bind({});
 
-export const NavLinkActive = Template.bind({});
+export const LinkDesktopActive = Template.bind({});
 
-NavLinkActive.args = {
+LinkDesktopActive.args = {
   active: true,
-  to: "/?path=/story/stories-navlink--nav-link-active",
+  to: "/?path=/story/stories-linkdesktop--nav-link-active",
   label: "active",
 };
 
-export const NavLinkExternal = Template.bind({});
+export const LinkDesktopExternal = Template.bind({});
 
-NavLinkExternal.args = {
+LinkDesktopExternal.args = {
   active: false,
-  to: "/?path=/story/stories-navlink--nav-link-external",
+  to: "/?path=/story/stories-linkdesktop--nav-link-external",
   label: "external",
   target: "_blank",
 };
