@@ -11,9 +11,18 @@ describe("<LinkMobile/>", () => {
     const args = {
       active: false,
       to: "/",
-      label: "Página 1",
+      children: "Página 1",
     };
     render(<LinkMobile {...args} />);
-    expect(screen.getByText(args.label)).toBeInTheDocument();
+    expect(screen.getByText("Página 1")).toBeInTheDocument();
+  });
+  test("Children was rendered", () => {
+    const args = {
+      active: false,
+      to: "/",
+      children: <p>Página 1</p>,
+    };
+    render(<LinkMobile {...args} />);
+    expect(screen.getByText("Página 1")).toBeInTheDocument();
   });
 });
