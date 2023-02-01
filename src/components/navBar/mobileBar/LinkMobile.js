@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
-import { StyledLinkMobile } from "../Styles.js";
+import { StyledLinkMobile, NavItemContainer } from "../Styles.js";
 
 const LinkMobile = ({ children, to, ...props }) => {
   return (
-    <StyledLinkMobile to={to} {...props}>
-      {children}
-    </StyledLinkMobile>
+    <NavItemContainer>
+      <StyledLinkMobile to={to} {...props}>
+        {children}
+      </StyledLinkMobile>
+    </NavItemContainer>
   );
 };
 

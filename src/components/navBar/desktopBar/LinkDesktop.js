@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
-import { StyledLinkDesktop } from "../Styles.js";
+import { StyledLinkDesktop, NavItemContainer } from "../Styles.js";
 
 const LinkDesktop = ({ children, to, ...props }) => {
   return (
-    <StyledLinkDesktop to={to} {...props}>
-      {children}
-    </StyledLinkDesktop>
+    <NavItemContainer>
+      <StyledLinkDesktop to={to} {...props}>
+        {children}
+      </StyledLinkDesktop>
+    </NavItemContainer>
   );
 };
 

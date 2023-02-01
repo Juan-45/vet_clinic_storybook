@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
+import { NavItemsContainer, NavItemContainer } from "components/navBar/Styles";
 import LinkDesktop from "components/navBar/desktopBar/LinkDesktop";
-import { Box } from "@mui/material";
+import { Box, List, ListItem } from "@mui/material";
 import RenderIf from "components/RenderIf";
 import { styled } from "@mui/material/styles";
 
@@ -65,14 +66,11 @@ const Logo = ({ homeURL, src, alt, ...props }) => (
 
 const NavBar = ({ navigationOptions, logoOptions, withLogo }) => {
   const links = navigationOptions.map((item, index) => (
-    <LinkDesktop
-      key={`${item.to}-${index}`}
-      to={item.to}
-      active={item.active}
-      {...item.anchorProp}
-    >
-      {item.label}
-    </LinkDesktop>
+    <NavItemContainer key={`${item.to}-${index}`}>
+      <LinkDesktop to={item.to} active={item.active} {...item.anchorProp}>
+        {item.label}
+      </LinkDesktop>
+    </NavItemContainer>
   ));
   return (
     <Root>
@@ -83,18 +81,20 @@ const NavBar = ({ navigationOptions, logoOptions, withLogo }) => {
           src={logoOptions.imgUrl}
         />
       </RenderIf>
-      <FlexContainer>{links}</FlexContainer>
+      <NavItemsContainer>{links}</NavItemsContainer>
     </Root>
   );
 };
 
 NavBar.propTypes = {
-  navigationOptions: PropTypes.shape({
-    to: PropTypes.string,
-    label: PropTypes.string,
-    active: PropTypes.bool,
-    anchorProp: PropTypes.object,
-  }).isRequired,
+  navigationOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      to: PropTypes.string,
+      label: PropTypes.string,
+      active: PropTypes.bool,
+      anchorProp: PropTypes.object,
+    })
+  ).isRequired,
   logoOptions: PropTypes.shape({
     homeUrl: PropTypes.string,
     imgUrl: PropTypes.string,
@@ -103,6 +103,9 @@ NavBar.propTypes = {
 };
 
 NavBar.defaultProps = {
+  navigationOptions: {
+    active: false,
+  },
   logoOptions: {},
   withLogo: false,
 };
