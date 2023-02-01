@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+import { Button, List, ListItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const TRANSITION_TIME = 0.1;
 const MOBILE_TRANSITION_TIME = 0.25;
 
-const StyledLink = styled(Link)(({ theme }) => ({
+const getNavItemStyles = ({ theme }) => ({
   display: "inline-block",
   position: "relative",
   height: "initial",
@@ -29,22 +30,14 @@ const StyledLink = styled(Link)(({ theme }) => ({
     position: "absolute",
     content: "''",
   },
-}));
+});
 
-const StyledLinkDesktop = styled(StyledLink, {
-  shouldForwardProp: (prop) => prop !== "active",
-})(({ theme, active }) => ({
-  transition: "margin 0.25s ease",
-  marginLeft: active ? theme.spacing(1.2) : "none",
-  marginRight: active ? theme.spacing(3) : theme.spacing(1),
-
-  "&:hover": {
-    marginLeft: theme.spacing(1.2),
-    marginRight: theme.spacing(3),
-  },
+const getRootNavItemDesktopStyles = ({ theme, active }) => ({
+  marginLeft: theme.spacing(1),
+  marginRight: theme.spacing(2.2),
   "&::after": {
-    transform: active ? "skew(-25deg)" : "unset",
     transition: `transform ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s, box-shadow ${TRANSITION_TIME}s ease`,
+    transform: active ? "skew(-25deg)" : "unset",
     boxShadow: active ? theme.shadows[2] : "unset",
   },
   "&:hover:after": {
@@ -58,8 +51,8 @@ const StyledLinkDesktop = styled(StyledLink, {
     left: 0,
     height: "100%",
     width: "100%",
-    transform: active ? "skew(-25deg) translate(8px, -8px)" : "skew(-25deg)",
     transition: `transform ${TRANSITION_TIME}s ease, background 0s ${TRANSITION_TIME}s`,
+    transform: active ? "skew(-25deg) translate(8px, -8px)" : "skew(-25deg)",
     background: active ? theme.palette.secondary.main : "unset",
   },
   "&:hover:before": {
@@ -67,7 +60,43 @@ const StyledLinkDesktop = styled(StyledLink, {
     background: theme.palette.secondary.main,
     transform: "skew(-25deg) translate(8px, -8px)",
   },
-}));
+});
+
+const NavItemsContainer = styled(List)({
+  display: "flex",
+  flexWrap: "nowrap",
+  padding: "0px",
+});
+
+const NavItemContainer = styled(ListItem)({
+  padding: "0px",
+  width: "initial",
+});
+
+const StyledLink = styled(Link)(getNavItemStyles);
+
+const StyledListItem = styled(NavItemContainer)(getNavItemStyles);
+
+const StyledListItemDesktop = styled(StyledListItem, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(getRootNavItemDesktopStyles);
+
+//-------------------------------------------------------------
+
+const StyledLinkDesktop = styled(StyledLink, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(getRootNavItemDesktopStyles);
+
+const NavMenuOpenDesktop = styled(StyledListItemDesktop)({
+  position: "relative",
+  "&:hover": {
+    "& .desktopMenuList": {
+      display: "block",
+    },
+  },
+});
+
+//const NavMenuContainer = styled()({});
 
 const StyledLinkMobile = styled(StyledLink, {
   shouldForwardProp: (prop) => prop !== "active",
@@ -96,4 +125,10 @@ const StyledLinkMobile = styled(StyledLink, {
   },
 }));
 
-export { StyledLinkDesktop, StyledLinkMobile };
+export {
+  NavItemsContainer,
+  NavItemContainer,
+  StyledLinkDesktop,
+  StyledLinkMobile,
+  NavMenuOpenDesktop,
+};
