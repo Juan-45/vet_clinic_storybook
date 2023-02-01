@@ -41,4 +41,12 @@ export const lightTheme = createTheme({
       xs: 0,
     },
   },
+
+  components: {
+    MuiButton: {
+      defaultProps: {
+        disableRipple: true,
+      },
+    },
+  },
 });
