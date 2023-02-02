@@ -6,6 +6,7 @@ import {
   NavMenuItemContainer,
   NavMenuItem,
 } from "components/navBar/Styles";
+import { useLocation } from "react-router-dom";
 
 //import { useState } from "react";
 
@@ -15,14 +16,19 @@ const NavMenuDesktop = ({ label, active, nested }) => {
   const handleOpen = () => setOpen(true);
 
   const handleClose = () => setOpen(false);*/
+  const location = useLocation();
 
-  const nestedLinks = nested.map((item) => (
-    <NavMenuItemContainer>
-      <NavMenuItem to={item.to} active={item.active}>
-        <ListItemText primary={item.label} />
-      </NavMenuItem>
-    </NavMenuItemContainer>
-  ));
+  const nestedLinks = nested.map((item, index) => {
+    const isActive = item.to === location.pathname;
+
+    return (
+      <NavMenuItemContainer key={`${item.label}-${index}`}>
+        <NavMenuItem to={item.to} active={isActive} {...item.anchorProp}>
+          <ListItemText primary={item.label} />
+        </NavMenuItem>
+      </NavMenuItemContainer>
+    );
+  });
 
   return (
     <NavMenuOpenDesktop active={active}>
@@ -39,7 +45,6 @@ NavMenuDesktop.propTypes = {
     PropTypes.shape({
       to: PropTypes.string.isRequired,
       label: PropTypes.string,
-      active: PropTypes.bool,
       anchorProp: PropTypes.object,
     })
   ).isRequired,
@@ -48,11 +53,6 @@ NavMenuDesktop.propTypes = {
 };
 
 NavMenuDesktop.defaulProps = {
-  nested: [
-    {
-      active: false,
-    },
-  ],
   active: false,
 };
 
