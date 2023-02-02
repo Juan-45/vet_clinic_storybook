@@ -1,25 +1,37 @@
 import React from "react";
 import NavMenuDesktop from "components/navBar/desktopBar/NavMenuDesktop";
-import { UlLinks } from "components/navBar/Styles";
 
 export default {
   component: NavMenuDesktop,
   argTypes: {
-    /* active: {
+    active: {
       defaultValue: false,
       description: "Active: current path matches the value of href attribute",
       control: { type: "boolean" },
     },
-    to: {
-      defaultValue: "/?path=/story/stories-linkmobile--playground",
-      control: { type: "text" },
-      description: "Path value",
-    },
-    children: {
+    label: {
       defaultValue: "Página 1",
       control: { type: "text" },
-      description: "Children",
-    },*/
+      description: "Label",
+    },
+    nested: {
+      defaultValue: [
+        {
+          to: "/resources/contact",
+          label: "Contáctanos",
+        },
+        {
+          to: "/resources/faq",
+          label: "FAQ",
+        },
+        {
+          to: "/resources/rate_us",
+          label: "Califícanos",
+        },
+      ],
+      control: { type: "object" },
+      description: "Array of objects",
+    },
   },
 };
 
@@ -27,19 +39,8 @@ const Template = (args) => <NavMenuDesktop {...args} />;
 
 export const Playground = Template.bind({});
 
-/*export const LinkMobileActive = Template.bind({});
+export const NavMenuDesktopActive = Template.bind({});
 
-LinkMobileActive.args = {
+NavMenuDesktopActive.args = {
   active: true,
-  to: "/?path=/story/stories-linkmobile--nav-link-active",
-  children: "active",
 };
-
-export const LinkMobileExternal = Template.bind({});
-
-LinkMobileExternal.args = {
-  active: false,
-  to: "/?path=/story/stories-linkmobile--nav-link-external",
-  children: "external",
-  target: "_blank",
-};*/
