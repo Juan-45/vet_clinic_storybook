@@ -48,5 +48,10 @@ export const lightTheme = createTheme({
         disableRipple: true,
       },
     },
+    MuiListItem: {
+      defaultProps: {
+        disablePadding: true,
+      },
+    },
   },
 });
