@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { List, ListItem, ListItemText, Typography } from "@mui/material";
+import { ListItemText, Typography } from "@mui/material";
 import {
   NavMenuOpenDesktop,
   NavMenuItemsContainer,
@@ -10,36 +9,26 @@ import {
 
 //import { useState } from "react";
 
-const NavMenuDesktop = ({ label, nested }) => {
-  const active = false;
-
-  /*const [open, setOpen] = useState(false);
+const NavMenuDesktop = ({ label, active, nested }) => {
+  /*  const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen(true);
 
   const handleClose = () => setOpen(false);*/
 
+  const nestedLinks = nested.map((item) => (
+    <NavMenuItemContainer>
+      <NavMenuItem to={item.to} active={item.active}>
+        <ListItemText primary={item.label} />
+      </NavMenuItem>
+    </NavMenuItemContainer>
+  ));
+
   return (
-    <NavMenuOpenDesktop
-      // onClick={handleOpen}
-      active={active}
-    >
-      <Typography variant="button">Prueba</Typography>
-      <NavMenuItemsContainer className="desktopMenuList">
-        <NavMenuItemContainer
-        //  onClick={handleClose}
-        >
-          <NavMenuItem to={"/"}>
-            <ListItemText primary={"Test1"} />
-          </NavMenuItem>
-        </NavMenuItemContainer>
-        <NavMenuItemContainer
-        // onClick={handleClose}
-        >
-          <NavMenuItem to={"/"}>
-            <ListItemText primary={"Test2"} />
-          </NavMenuItem>
-        </NavMenuItemContainer>
+    <NavMenuOpenDesktop active={active}>
+      <Typography variant='button'>{label}</Typography>
+      <NavMenuItemsContainer className='desktopMenuList'>
+        {nestedLinks}
       </NavMenuItemsContainer>
     </NavMenuOpenDesktop>
   );
@@ -48,19 +37,23 @@ const NavMenuDesktop = ({ label, nested }) => {
 NavMenuDesktop.propTypes = {
   nested: PropTypes.arrayOf(
     PropTypes.shape({
-      to: PropTypes.string,
+      to: PropTypes.string.isRequired,
       label: PropTypes.string,
       active: PropTypes.bool,
       anchorProp: PropTypes.object,
     })
   ).isRequired,
   label: PropTypes.string,
+  active: PropTypes.bool,
 };
 
 NavMenuDesktop.defaulProps = {
-  nested: {
-    active: false,
-  },
+  nested: [
+    {
+      active: false,
+    },
+  ],
+  active: false,
 };
 
 export default NavMenuDesktop;
