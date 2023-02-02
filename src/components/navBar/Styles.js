@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button, List, ListItem } from "@mui/material";
+import { List, ListItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const TRANSITION_TIME = 0.1;
@@ -69,7 +69,6 @@ const NavItemsContainer = styled(List)({
 });
 
 const NavItemContainer = styled(ListItem)({
-  padding: "0px",
   width: "initial",
 });
 
@@ -96,7 +95,46 @@ const NavMenuOpenDesktop = styled(StyledListItemDesktop)({
   },
 });
 
-//const NavMenuContainer = styled()({});
+const NavMenuItemsContainer = styled(List)({
+  display: "none",
+  position: "absolute",
+  left: "0",
+  width: "150px",
+  transform: "translate(-6.5px, 4px)",
+  paddingTop: "10px",
+  paddingBottom: "0px",
+});
+
+const NavMenuItemContainer = styled(ListItem)(({ theme }) => ({
+  margin: "0px",
+  width: "100%",
+  background: theme.palette.primary.main,
+  boxShadow: theme.shadows[2],
+  borderBottom: `1px solid ${theme.palette.divider}`,
+}));
+
+const NavMenuItem = styled(Link, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(({ theme, active }) => ({
+  paddingLeft: theme.spacing(1),
+  width: "100%",
+  textDecoration: "none",
+  color: theme.palette.text.primary,
+  position: "relative",
+  "&::before": {
+    position: "absolute",
+    content: "''",
+    bottom: "-1px",
+    left: 0,
+    height: "3px",
+    width: active ? "100%" : "0%",
+    transition: `width ${MOBILE_TRANSITION_TIME}s ease`,
+    background: theme.palette.secondary.main,
+  },
+  "&:hover:before": {
+    width: "100%",
+  },
+}));
 
 const StyledLinkMobile = styled(StyledLink, {
   shouldForwardProp: (prop) => prop !== "active",
@@ -131,4 +169,7 @@ export {
   StyledLinkDesktop,
   StyledLinkMobile,
   NavMenuOpenDesktop,
+  NavMenuItemsContainer,
+  NavMenuItemContainer,
+  NavMenuItem,
 };
