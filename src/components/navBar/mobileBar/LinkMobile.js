@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
-import { StyledLinkMobile, NavItemContainer } from "../Styles.js";
+import { Typography } from "@mui/material";
+import { StyledLinkMobile } from "components/navBar/Styles.js";
 
 const LinkMobile = ({ children, to, ...props }) => {
   return (
-    <NavItemContainer>
-      <StyledLinkMobile to={to} {...props}>
-        {children}
-      </StyledLinkMobile>
-    </NavItemContainer>
+    <StyledLinkMobile to={to} {...props}>
+      <Typography variant="button">{children}</Typography>
+    </StyledLinkMobile>
   );
 };
 
