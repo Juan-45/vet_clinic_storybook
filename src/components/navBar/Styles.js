@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { List, ListItem } from "@mui/material";
+import { Box, List, ListItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 const TRANSITION_TIME = 0.1;
@@ -34,7 +34,7 @@ const getNavItemStyles = ({ theme }) => ({
 
 const getRootNavItemDesktopStyles = ({ theme, active }) => ({
   marginLeft: theme.spacing(1),
-  marginRight: theme.spacing(2.2),
+  marginRight: theme.spacing(2.3),
   "&::after": {
     transition: `transform ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s, box-shadow ${TRANSITION_TIME}s ease`,
     transform: active ? "skew(-25deg)" : "unset",
@@ -70,6 +70,48 @@ const NavItemsContainer = styled(List)({
 
 const NavItemContainer = styled(ListItem)({
   width: "initial",
+});
+
+const FlexContainer = styled(Box)({
+  display: "flex",
+  flexWrap: "nowrap",
+});
+
+const NavBarContainer = styled(FlexContainer)(({ theme }) => ({
+  position: "fixed",
+  top: "0",
+  zIndex: "1200",
+  width: "100%",
+  minHeight: "25px",
+  padding: `${theme.spacing(2)} ${theme.spacing(20)}`,
+  [theme.breakpoints.down("lg")]: {
+    padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
+  },
+  paddingTop: theme.spacing(2),
+  justifyContent: "space-between",
+  alignItems: "center",
+}));
+
+const LogoContainer = styled(FlexContainer)({
+  background: "white",
+  borderRadius: "50%",
+});
+
+const Figure = styled("figure")(({ theme }) => ({
+  margin: "0px",
+  width: "125px",
+  height: "125px",
+  [theme.breakpoints.down("lg")]: {
+    width: "90px",
+    height: "90px",
+  },
+}));
+
+const LogoImg = styled("img")({
+  objectFit: "cover",
+  borderRadius: "50%",
+  width: "100%",
+  height: "100%",
 });
 
 const StyledLink = styled(Link)(getNavItemStyles);
@@ -164,8 +206,12 @@ const StyledLinkMobile = styled(StyledLink, {
 }));
 
 export {
+  NavBarContainer,
   NavItemsContainer,
   NavItemContainer,
+  LogoContainer,
+  Figure,
+  LogoImg,
   StyledLinkDesktop,
   StyledLinkMobile,
   NavMenuOpenDesktop,
