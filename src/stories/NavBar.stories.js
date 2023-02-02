@@ -9,29 +9,41 @@ export default {
     navigationOptions: {
       defaultValue: [
         {
-          to: "/?path=/story/stories-navbar--playground",
+          to: "/home",
           label: "Home",
-          active: false,
         },
         {
-          to: "/?path=/story/stories-navbar--playground",
+          to: "/about",
           label: "Acerca de",
-          active: false,
         },
         {
-          to: "/?path=/story/stories-navbar--playground",
+          to: "/services",
           label: "Servicios",
-          active: false,
         },
         {
-          to: "/?path=/story/stories-navbar--playground",
+          to: "/appointment",
           label: "Solicitar turno",
-          active: false,
+          anchorProp: {
+            target: "_blank",
+          },
         },
         {
-          to: "/?path=/story/stories-navbar--playground",
+          // to: "/", this props was omited deliberately
           label: "Recursos",
-          active: false,
+          nested: [
+            {
+              to: "/resources/contact",
+              label: "Contáctanos",
+            },
+            {
+              to: "/resources/faq",
+              label: "FAQ",
+            },
+            {
+              to: "/resources/rate_us",
+              label: "Califícanos",
+            },
+          ],
         },
       ],
       description: "Array of objects",
