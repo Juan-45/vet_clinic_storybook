@@ -62,7 +62,7 @@ const NavBar = ({ navigationOptions, logoOptions, withLogo }) => {
     } else return <></>;
   });
   return (
-    <NavBarContainer>
+    <NavBarContainer role='navigation'>
       <RenderIf condition={withLogo}>
         <Logo
           homeURL={logoOptions.homeUrl}
