@@ -6,6 +6,7 @@ import {
   NavMenuItemContainer,
   NavMenuItem,
   NavMenuOpenDesktopTouch,
+  NavMenuArrow,
 } from "components/navBar/Styles";
 import RenderIf from "components/RenderIf";
 import CatchEventsBox from "components/CatchEventsBox";
@@ -43,6 +44,7 @@ const NavMenuDesktop = ({ label, active, nested }) => {
       <RenderIf condition={!isTouchScreen}>
         <NavMenuOpenDesktop active={active}>
           <Typography variant='button'>{label}</Typography>
+          <NavMenuArrow className='desktopNavMenuArrow' />
           <NavMenuItemsContainer className='desktopMenuList'>
             {nestedLinks}
           </NavMenuItemsContainer>
@@ -51,6 +53,7 @@ const NavMenuDesktop = ({ label, active, nested }) => {
       <RenderIf condition={isTouchScreen}>
         <NavMenuOpenDesktopTouch active={active || open} onClick={handleMenu}>
           <Typography variant='button'>{label}</Typography>
+          <NavMenuArrow open={open} />
           <NavMenuItemsContainer open={open}>
             {nestedLinks}
           </NavMenuItemsContainer>
