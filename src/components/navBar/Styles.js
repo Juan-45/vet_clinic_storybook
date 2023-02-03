@@ -129,7 +129,9 @@ const FlexContainer = styled(Box)({
   flexWrap: "nowrap",
 });
 
-const NavBarContainer = styled("nav")(({ theme }) => ({
+const NavBarContainer = styled("nav", {
+  shouldForwardProp: (prop) => prop !== "scrolling",
+})(({ theme, scrolling }) => ({
   display: "flex",
   flexWrap: "nowrap",
   position: "fixed",
@@ -138,12 +140,22 @@ const NavBarContainer = styled("nav")(({ theme }) => ({
   width: "100%",
   minHeight: "25px",
   padding: `${theme.spacing(2)} ${theme.spacing(20)}`,
-  [theme.breakpoints.down("lg")]: {
-    padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
-  },
   paddingTop: theme.spacing(2),
   justifyContent: "space-between",
   alignItems: "center",
+  transition: "background 0.5s ease",
+  background: scrolling ? theme.palette.ternary.main : "unset",
+
+  [theme.breakpoints.down("lg")]: {
+    padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
+  },
+
+  [theme.breakpoints.down("touchScreen_max_800")]: {
+    background: theme.palette.ternary.main,
+    padding: theme.spacing(2),
+    top: "unset",
+    bottom: 0,
+  },
 }));
 
 const LogoContainer = styled(FlexContainer)({
@@ -158,6 +170,10 @@ const Figure = styled("figure")(({ theme }) => ({
   [theme.breakpoints.down("lg")]: {
     width: "90px",
     height: "90px",
+  },
+  [theme.breakpoints.down("touchScreen_max_800")]: {
+    width: "60px",
+    height: "60px",
   },
 }));
 
@@ -225,6 +241,8 @@ const NavMenuItem = styled(Link, {
   shouldForwardProp: (prop) => prop !== "active",
 })(({ theme, active }) => ({
   paddingLeft: theme.spacing(1),
+  paddingTop: theme.spacing(0.5),
+  paddingBottom: theme.spacing(0.5),
   width: "100%",
   textDecoration: "none",
   color: theme.palette.text.primary,
@@ -232,15 +250,15 @@ const NavMenuItem = styled(Link, {
   "&::before": {
     position: "absolute",
     content: "''",
-    bottom: "-1px",
-    left: 0,
+    bottom: "6px",
+    left: "8px",
     height: "3px",
-    width: active ? "100%" : "0%",
+    width: active ? "88%" : "0%",
     transition: `width ${MOBILE_TRANSITION_TIME}s ease`,
     background: theme.palette.secondary.main,
   },
   "&:hover:before": {
-    width: "100%",
+    width: "88%",
   },
 }));
 
