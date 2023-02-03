@@ -35,7 +35,7 @@ export const lightTheme = createTheme({
       tablet_min_600: 600,
       mobile_max_750: 750,
       mobile_max_599: 600,
-      screen_max_816: 817,
+      screen_max_850: 851,
       lg: 1200,
       md: 751,
       sm: 600,

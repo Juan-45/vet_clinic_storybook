@@ -21,13 +21,10 @@ const Logo = ({ homeURL, src, alt, ...props }) => (
   </LogoContainer>
 );
 
-//caso contrario renderizar componente MobileBar con botón hamburguesa y menu fixed que ocupa toda la pantalla
-// agregar flecha animada para menu desplegable
-
 const NavBar = ({ navigationOptions, logoOptions, withLogo }) => {
   const { scrolling } = useTriggerOnScroll();
-  const match_max_816 = useMediaQuery((theme) =>
-    theme.breakpoints.down("screen_max_816")
+  const match_max_850 = useMediaQuery((theme) =>
+    theme.breakpoints.down("screen_max_850")
   );
 
   return (
@@ -39,10 +36,10 @@ const NavBar = ({ navigationOptions, logoOptions, withLogo }) => {
           src={logoOptions.imgUrl}
         />
       </RenderIf>
-      <RenderIf condition={!match_max_816}>
+      <RenderIf condition={!match_max_850}>
         <DesktopBar navigationOptions={navigationOptions} />
       </RenderIf>
-      <RenderIf condition={match_max_816}>
+      <RenderIf condition={match_max_850}>
         <MobileBar navigationOptions={navigationOptions} />
       </RenderIf>
     </NavBarContainer>
