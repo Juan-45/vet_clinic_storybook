@@ -24,7 +24,7 @@ export const lightTheme = createTheme({
       main: "#7FA7C3",
     },
     ternary: {
-      main: "#cf7373",
+      main: "#956730",
     },
   },
 
@@ -35,6 +35,7 @@ export const lightTheme = createTheme({
       tablet_min_600: 600,
       mobile_max_750: 750,
       mobile_max_599: 599.95,
+      touchScreen_max_800: 801,
       lg: 1200,
       md: 751,
       sm: 600,
