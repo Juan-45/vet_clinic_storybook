@@ -1,16 +1,14 @@
 import PropTypes from "prop-types";
 import {
   NavBarContainer,
-  NavItemsContainer,
-  NavItemContainer,
   LogoContainer,
   Figure,
   LogoImg,
 } from "components/navBar/Styles";
-import LinkDesktop from "components/navBar/desktopBar/LinkDesktop";
-import NavMenuDesktop from "components/navBar/desktopBar/NavMenuDesktop";
+import DesktopBar from "components/navBar/DesktopBar";
+import MobileBar from "components/navBar/MobileBar";
 import RenderIf from "components/RenderIf";
-import { useLocation } from "react-router-dom";
+import { useMediaQuery } from "@mui/material";
 import useTriggerOnScroll from "hooks/useTriggerOnScroll";
 
 const Logo = ({ homeURL, src, alt, ...props }) => (
@@ -23,50 +21,15 @@ const Logo = ({ homeURL, src, alt, ...props }) => (
   </LogoContainer>
 );
 
-//extraer lógica para detectar current path match en helper
-//extraer componente DesktopBar, y rendewrizar condicionalmente en función de breakpoint
 //caso contrario renderizar componente MobileBar con botón hamburguesa y menu fixed que ocupa toda la pantalla
+// agregar flecha animada para menu desplegable
 
 const NavBar = ({ navigationOptions, logoOptions, withLogo }) => {
-  const { pathname } = useLocation();
   const { scrolling } = useTriggerOnScroll();
+  const match_max_816 = useMediaQuery((theme) =>
+    theme.breakpoints.down("screen_max_816")
+  );
 
-  const links = navigationOptions.map((item, index) => {
-    const matchCurrentPath = (nested, currentPath) => {
-      if (nested) {
-        const pathsList = nested.map((i) => i.to);
-        const result = pathsList.find((path) => path === currentPath);
-
-        if (result) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-    };
-
-    const isActive = item.to === pathname;
-    const isMenuActive = matchCurrentPath(item.nested, pathname);
-
-    if (item.to) {
-      return (
-        <NavItemContainer key={`${item.label}-${index}`}>
-          <LinkDesktop to={item.to} active={isActive} {...item.anchorProp}>
-            {item.label}
-          </LinkDesktop>
-        </NavItemContainer>
-      );
-    } else if (item.nested) {
-      return (
-        <NavMenuDesktop
-          key={`${item.label}-${index}`}
-          label={item.label}
-          active={isMenuActive}
-          nested={item.nested}
-        />
-      );
-    } else return <></>;
-  });
   return (
     <NavBarContainer role='navigation' scrolling={scrolling}>
       <RenderIf condition={withLogo}>
@@ -76,7 +39,12 @@ const NavBar = ({ navigationOptions, logoOptions, withLogo }) => {
           src={logoOptions.imgUrl}
         />
       </RenderIf>
-      <NavItemsContainer>{links}</NavItemsContainer>
+      <RenderIf condition={!match_max_816}>
+        <DesktopBar navigationOptions={navigationOptions} />
+      </RenderIf>
+      <RenderIf condition={match_max_816}>
+        <MobileBar navigationOptions={navigationOptions} />
+      </RenderIf>
     </NavBarContainer>
   );
 };
