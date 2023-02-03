@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Box, List, ListItem } from "@mui/material";
+import { Box, List, ListItem, IconButton } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import mergician from "mergician";
 
@@ -88,37 +88,70 @@ const getDesktopTouch = ({ theme, active }) =>
 const getMobileCommon = ({ theme, active }) => ({
   marginLeft: theme.spacing(1),
   marginRight: theme.spacing(1),
+  marginBottom: theme.spacing(2),
+  paddingTop: theme.spacing(1),
+  paddingBottom: theme.spacing(1),
+  minWidth: "300px",
   "&::after": {
     transform: "skew(-25deg)",
+    boxShadow: active ? theme.shadows[18] : theme.shadows[2],
     transition: `box-shadow ${MOBILE_TRANSITION_TIME}s ease`,
-    boxShadow: active ? theme.shadows[6] : theme.shadows[2],
   },
 
   "&::before": {
-    bottom: 0,
-    left: "-6px",
+    bottom: "-1px",
+    left: "-9px",
     height: "3px",
     width: active ? "100%" : "0%",
     transform: "skew(-25deg)",
-    transition: `width ${MOBILE_TRANSITION_TIME}s ease`,
     background: theme.palette.secondary.main,
+    transition: `width ${MOBILE_TRANSITION_TIME}s ease`,
   },
 });
 
 const getMobileNoTouch = ({ theme }) => ({
   "&:hover:after": {
-    boxShadow: theme.shadows[6],
+    boxShadow: theme.shadows[18],
   },
   "&:hover:before": {
     width: "100%",
   },
 });
 
-const NavItemsContainer = styled(List)({
+const NavItemsDesktopContainer = styled(List)(({ theme }) => ({
   display: "flex",
   flexWrap: "nowrap",
-  padding: "0px",
-});
+  [theme.breakpoints.down("screen_max_816")]: {
+    display: "none",
+  },
+}));
+
+const NavItemsMobileContainer = styled(List)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "end",
+  paddingTop: theme.spacing(11),
+  paddingRight: theme.spacing(8),
+  [theme.breakpoints.down("mobile_max_599")]: {
+    paddingRight: theme.spacing(2),
+  },
+}));
+
+const NavDrawerContainer = styled(Box)(({ theme }) => ({
+  background: theme.palette.ternary.main,
+  position: "fixed",
+  top: 0,
+  left: 0,
+  height: "100%",
+  width: "100%",
+}));
+
+const CloseDrawerButton = styled(IconButton)(({ theme }) => ({
+  position: "absolute",
+  zIndex: 1,
+  top: theme.spacing(2),
+  left: theme.spacing(2),
+}));
 
 const NavItemContainer = styled(ListItem)({
   width: "initial",
@@ -150,9 +183,8 @@ const NavBarContainer = styled("nav", {
     padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
   },
 
-  [theme.breakpoints.down("touchScreen_max_800")]: {
+  [theme.breakpoints.down("screen_max_816")]: {
     background: theme.palette.ternary.main,
-    padding: theme.spacing(2),
     top: "unset",
     bottom: 0,
   },
@@ -171,7 +203,7 @@ const Figure = styled("figure")(({ theme }) => ({
     width: "90px",
     height: "90px",
   },
-  [theme.breakpoints.down("touchScreen_max_800")]: {
+  [theme.breakpoints.down("screen_max_816")]: {
     width: "60px",
     height: "60px",
   },
@@ -274,7 +306,10 @@ const StyledLinkMobileTouch = styled(StyledLink, {
 
 export {
   NavBarContainer,
-  NavItemsContainer,
+  NavItemsDesktopContainer,
+  NavItemsMobileContainer,
+  NavDrawerContainer,
+  CloseDrawerButton,
   NavItemContainer,
   LogoContainer,
   Figure,
