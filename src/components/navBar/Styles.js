@@ -72,7 +72,7 @@ const getDesktop = ({ theme, active }) =>
 
 const getDesktopTouch = ({ theme, active }) =>
   mergician(getDesktopCommon({ theme, active }), {
-    zIndex: "2",
+    zIndex: 0,
     "&::after": {
       transition: active
         ? `transform ${TRANSITION_TIME}s ease, box-shadow ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s`
@@ -85,39 +85,6 @@ const getDesktopTouch = ({ theme, active }) =>
         : `transform ${TRANSITION_TIME}s ease, background 0s ${TRANSITION_TIME}s`,
     },
   });
-
-const getMobileCommon = ({ theme, active }) => ({
-  marginLeft: theme.spacing(1),
-  marginRight: theme.spacing(1),
-  marginBottom: theme.spacing(2),
-  paddingTop: theme.spacing(1),
-  paddingBottom: theme.spacing(1),
-  minWidth: "300px",
-  "&::after": {
-    transform: "skew(-25deg)",
-    boxShadow: active ? theme.shadows[18] : theme.shadows[2],
-    transition: `box-shadow ${MOBILE_TRANSITION_TIME}s ease`,
-  },
-
-  "&::before": {
-    bottom: "-1px",
-    left: "-9px",
-    height: "3px",
-    width: active ? "100%" : "0%",
-    transform: "skew(-25deg)",
-    background: theme.palette.secondary.main,
-    transition: `width ${MOBILE_TRANSITION_TIME}s ease`,
-  },
-});
-
-const getMobileNoTouch = ({ theme }) => ({
-  "&:hover:after": {
-    boxShadow: theme.shadows[18],
-  },
-  "&:hover:before": {
-    width: "100%",
-  },
-});
 
 const NavItemsDesktopContainer = styled(List)(({ theme }) => ({
   display: "flex",
@@ -184,7 +151,7 @@ const NavBarContainer = styled("nav", {
     padding: `${theme.spacing(2)} ${theme.spacing(4)}`,
   },
 
-  [theme.breakpoints.down("screen_max_816")]: {
+  [theme.breakpoints.down("screen_max_850")]: {
     background: theme.palette.ternary.main,
     top: "unset",
     bottom: 0,
@@ -204,7 +171,7 @@ const Figure = styled("figure")(({ theme }) => ({
     width: "90px",
     height: "90px",
   },
-  [theme.breakpoints.down("screen_max_816")]: {
+  [theme.breakpoints.down("screen_max_850")]: {
     width: "60px",
     height: "60px",
   },
@@ -221,10 +188,6 @@ const StyledLink = styled(Link)(getNavItem);
 
 const StyledListItem = styled(NavItemContainer)(getNavItem);
 
-const StyledListItemDesktop = styled(StyledListItem, {
-  shouldForwardProp: (prop) => prop !== "active",
-})(getDesktop);
-
 //-------------------------------------------------------------
 
 const StyledLinkDesktop = styled(StyledLink, {
@@ -233,25 +196,30 @@ const StyledLinkDesktop = styled(StyledLink, {
 
 const StyledLinkDesktopTouch = styled(StyledLink, {
   shouldForwardProp: (prop) => prop !== "active",
-})(({ theme, active }) => ({
-  ...getDesktopTouch({ theme, active }),
-  zIndex: "0",
-}));
+})(getDesktopTouch);
 
-const NavMenuOpenDesktop = styled(StyledListItemDesktop)({
-  "&:hover": {
-    "& .desktopMenuList": {
-      display: "block",
+const NavMenuOpenDesktop = styled(StyledListItem, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(({ theme, active }) =>
+  mergician(getDesktop({ theme, active }), {
+    "&:hover": {
+      "& .desktopMenuList": {
+        display: "block",
+      },
+      "& .desktopNavMenuArrow": {
+        transform: "rotate(180deg)",
+      },
     },
-    "& .desktopNavMenuArrow": {
-      transform: "rotate(180deg)",
-    },
-  },
-});
+  })
+);
 
 const NavMenuOpenDesktopTouch = styled(StyledListItem, {
   shouldForwardProp: (prop) => prop !== "active",
-})(getDesktopTouch);
+})(({ theme, active }) =>
+  mergician(getDesktopTouch({ theme, active }), {
+    zIndex: 2,
+  })
+);
 
 const NavMenuArrow = styled(ExpandMoreIcon, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -259,7 +227,7 @@ const NavMenuArrow = styled(ExpandMoreIcon, {
   "&.MuiSvgIcon-root": {
     transition: `transform ${MOBILE_TRANSITION_TIME}s ease`,
   },
-  transform: open ? "rotate(180deg)" : "translate(0deg)",
+  transform: open ? "rotate(180deg)" : "rotate(0deg)",
 }));
 
 const NavMenuItemsContainer = styled(List, {
@@ -269,7 +237,7 @@ const NavMenuItemsContainer = styled(List, {
   position: "absolute",
   left: "0",
   width: "150px",
-  transform: "translate(-6.5px, 4px)",
+  transform: "translate(-8px, 4px)",
   paddingTop: "10px",
   paddingBottom: "0px",
 }));
@@ -296,16 +264,49 @@ const NavMenuItem = styled(Link, {
     position: "absolute",
     content: "''",
     bottom: "6px",
-    left: "8px",
+    left: theme.spacing(1),
     height: "3px",
-    width: active ? "88%" : "0%",
+    width: active ? "calc(100% - 16px)" : "0%",
     transition: `width ${MOBILE_TRANSITION_TIME}s ease`,
     background: theme.palette.secondary.main,
   },
   "&:hover:before": {
-    width: "88%",
+    width: "calc(100% - 16px)",
   },
 }));
+
+const getMobileCommon = ({ theme, active }) => ({
+  marginLeft: theme.spacing(1),
+  marginRight: theme.spacing(1),
+  marginBottom: theme.spacing(2),
+  paddingTop: theme.spacing(1),
+  paddingBottom: theme.spacing(1),
+  minWidth: "300px",
+  "&::after": {
+    transform: "skew(-25deg)",
+    boxShadow: active ? theme.shadows[18] : theme.shadows[2],
+    transition: `box-shadow ${MOBILE_TRANSITION_TIME}s ease`,
+  },
+
+  "&::before": {
+    bottom: "-1px",
+    left: "-9px",
+    height: "3px",
+    width: active ? "100%" : "0%",
+    transform: "skew(-25deg)",
+    background: theme.palette.secondary.main,
+    transition: `width ${MOBILE_TRANSITION_TIME}s ease`,
+  },
+});
+
+const getMobileNoTouch = ({ theme }) => ({
+  "&:hover:after": {
+    boxShadow: theme.shadows[18],
+  },
+  "&:hover:before": {
+    width: "100%",
+  },
+});
 
 const StyledLinkMobileNoTouch = styled(StyledLink, {
   shouldForwardProp: (prop) => prop !== "active",
@@ -316,6 +317,30 @@ const StyledLinkMobileNoTouch = styled(StyledLink, {
 const StyledLinkMobileTouch = styled(StyledLink, {
   shouldForwardProp: (prop) => prop !== "active",
 })(getMobileCommon);
+
+const NavMenuOpenMobile = styled(StyledListItem, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(({ theme, active }) =>
+  mergician(getMobileCommon({ theme, active }), {
+    "&:hover:after": {
+      boxShadow: theme.shadows[18],
+    },
+    "&:hover:before": {
+      width: "100%",
+    },
+    "& .navMenuArrow": {
+      position: "absolute",
+      right: theme.spacing(2),
+    },
+    "& .mobileMenuListItem": {
+      boxShadow: active ? theme.shadows[18] : "initial",
+    },
+    "& .mobileMenuList": {
+      transform: "translate(-9px, 4px)",
+      width: "100%",
+    },
+  })
+);
 
 export {
   NavBarContainer,
@@ -329,10 +354,11 @@ export {
   LogoImg,
   StyledLinkDesktop,
   StyledLinkDesktopTouch,
-  StyledLinkMobileNoTouch,
-  StyledLinkMobileTouch,
   NavMenuOpenDesktop,
   NavMenuOpenDesktopTouch,
+  StyledLinkMobileNoTouch,
+  StyledLinkMobileTouch,
+  NavMenuOpenMobile,
   NavMenuItemsContainer,
   NavMenuItemContainer,
   NavMenuItem,
