@@ -34,8 +34,8 @@ export const lightTheme = createTheme({
       tablet_min_900: 900,
       tablet_min_600: 600,
       mobile_max_750: 750,
-      mobile_max_599: 599.95,
-      touchScreen_max_800: 801,
+      mobile_max_599: 600,
+      screen_max_816: 817,
       lg: 1200,
       md: 751,
       sm: 600,
@@ -49,9 +49,21 @@ export const lightTheme = createTheme({
         disableRipple: true,
       },
     },
+    MuiList: {
+      defaultProps: {
+        disablePadding: true,
+      },
+    },
     MuiListItem: {
       defaultProps: {
         disablePadding: true,
+      },
+    },
+    MuiIconButton: {
+      styleOverrides: {
+        "&:hover": {
+          background: "rgba(255,255,255,0.3)",
+        },
       },
     },
   },
