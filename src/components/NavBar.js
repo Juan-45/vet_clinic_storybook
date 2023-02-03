@@ -11,6 +11,7 @@ import LinkDesktop from "components/navBar/desktopBar/LinkDesktop";
 import NavMenuDesktop from "components/navBar/desktopBar/NavMenuDesktop";
 import RenderIf from "components/RenderIf";
 import { useLocation } from "react-router-dom";
+import useTriggerOnScroll from "hooks/useTriggerOnScroll";
 
 const Logo = ({ homeURL, src, alt, ...props }) => (
   <LogoContainer>
@@ -22,8 +23,13 @@ const Logo = ({ homeURL, src, alt, ...props }) => (
   </LogoContainer>
 );
 
+//extraer lógica para detectar current path match en helper
+//extraer componente DesktopBar, y rendewrizar condicionalmente en función de breakpoint
+//caso contrario renderizar componente MobileBar con botón hamburguesa y menu fixed que ocupa toda la pantalla
+
 const NavBar = ({ navigationOptions, logoOptions, withLogo }) => {
   const { pathname } = useLocation();
+  const { scrolling } = useTriggerOnScroll();
 
   const links = navigationOptions.map((item, index) => {
     const matchCurrentPath = (nested, currentPath) => {
@@ -62,7 +68,7 @@ const NavBar = ({ navigationOptions, logoOptions, withLogo }) => {
     } else return <></>;
   });
   return (
-    <NavBarContainer role='navigation'>
+    <NavBarContainer role='navigation' scrolling={scrolling}>
       <RenderIf condition={withLogo}>
         <Logo
           homeURL={logoOptions.homeUrl}
