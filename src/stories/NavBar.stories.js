@@ -79,7 +79,7 @@ const DefaultNavBar = Template.bind({});
 
 export const Playground = (args) => {
   return (
-    <Box sx={{ height: "150vh", background: "gray" }}>
+    <Box sx={{ height: "150vh", background: "#c6c7d0" }}>
       <DefaultNavBar {...args} />
     </Box>
   );
