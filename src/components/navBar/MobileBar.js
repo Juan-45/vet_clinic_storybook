@@ -1,4 +1,4 @@
-import { IconButton, Box } from "@mui/material";
+import { IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import {
@@ -8,6 +8,7 @@ import {
   CloseDrawerButton,
 } from "components/navBar/Styles";
 import LinkMobile from "components/navBar/mobileBar/LinkMobile";
+import NavMenuMobile from "components/navBar/mobileBar/NavMenuMobile";
 import RenderIf from "components/RenderIf";
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
@@ -27,13 +28,26 @@ const MobileBar = ({ navigationOptions }) => {
     if (item.to) {
       return (
         <NavItemContainer key={`${item.label}-${index}`}>
-          <LinkMobile to={item.to} active={isActive} {...item.anchorProp}>
+          <LinkMobile
+            to={item.to}
+            active={isActive}
+            onClick={handleClose}
+            {...item.anchorProp}
+          >
             {item.label}
           </LinkMobile>
         </NavItemContainer>
       );
     } else if (item.nested) {
-      return <></>;
+      return (
+        <NavMenuMobile
+          key={`${item.label}-${index}`}
+          label={item.label}
+          active={isMenuActive}
+          nested={item.nested}
+          drawerOnClose={handleClose}
+        />
+      );
     } else return <></>;
   });
 
