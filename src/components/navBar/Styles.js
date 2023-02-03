@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Box, List, ListItem, IconButton } from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { styled } from "@mui/material/styles";
 import mergician from "mergician";
 
@@ -242,12 +243,24 @@ const NavMenuOpenDesktop = styled(StyledListItemDesktop)({
     "& .desktopMenuList": {
       display: "block",
     },
+    "& .desktopNavMenuArrow": {
+      transform: "rotate(180deg)",
+    },
   },
 });
 
 const NavMenuOpenDesktopTouch = styled(StyledListItem, {
   shouldForwardProp: (prop) => prop !== "active",
 })(getDesktopTouch);
+
+const NavMenuArrow = styled(ExpandMoreIcon, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ open }) => ({
+  "&.MuiSvgIcon-root": {
+    transition: `transform ${MOBILE_TRANSITION_TIME}s ease`,
+  },
+  transform: open ? "rotate(180deg)" : "translate(0deg)",
+}));
 
 const NavMenuItemsContainer = styled(List, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -319,8 +332,9 @@ export {
   StyledLinkMobileNoTouch,
   StyledLinkMobileTouch,
   NavMenuOpenDesktop,
+  NavMenuOpenDesktopTouch,
   NavMenuItemsContainer,
   NavMenuItemContainer,
   NavMenuItem,
-  NavMenuOpenDesktopTouch,
+  NavMenuArrow,
 };
