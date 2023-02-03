@@ -2,10 +2,10 @@ import PropTypes from "prop-types";
 import { ListItemText, Typography } from "@mui/material";
 import {
   NavMenuOpenDesktop,
+  NavMenuOpenDesktopTouch,
   NavMenuItemsContainer,
   NavMenuItemContainer,
   NavMenuItem,
-  NavMenuOpenDesktopTouch,
   NavMenuArrow,
 } from "components/navBar/Styles";
 import RenderIf from "components/RenderIf";
