@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { Box, List, ListItem } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import mergician from "mergician";
 
-const TRANSITION_TIME = 0.1;
+const TRANSITION_TIME = 0.15;
 const MOBILE_TRANSITION_TIME = 0.25;
 
-const getNavItemStyles = ({ theme }) => ({
+const getNavItem = ({ theme }) => ({
   display: "inline-block",
   position: "relative",
   height: "initial",
@@ -32,7 +33,7 @@ const getNavItemStyles = ({ theme }) => ({
   },
 });
 
-const getRootNavItemDesktopStyles = ({ theme, active }) => ({
+const getDesktopCommon = ({ theme, active }) => ({
   marginLeft: theme.spacing(1),
   marginRight: theme.spacing(2.3),
   "&::after": {
@@ -40,11 +41,7 @@ const getRootNavItemDesktopStyles = ({ theme, active }) => ({
     transform: active ? "skew(-25deg)" : "unset",
     boxShadow: active ? theme.shadows[2] : "unset",
   },
-  "&:hover:after": {
-    transition: `transform ${TRANSITION_TIME}s ease, box-shadow ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s`,
-    boxShadow: theme.shadows[2],
-    transform: "skew(-25deg)",
-  },
+
   "&::before": {
     zIndex: "-2",
     top: 0,
@@ -55,10 +52,65 @@ const getRootNavItemDesktopStyles = ({ theme, active }) => ({
     transform: active ? "skew(-25deg) translate(8px, -8px)" : "skew(-25deg)",
     background: active ? theme.palette.secondary.main : "unset",
   },
-  "&:hover:before": {
-    transition: `transform ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s, background 0s ${TRANSITION_TIME}s`,
+});
+
+const getDesktop = ({ theme, active }) =>
+  mergician(getDesktopCommon({ theme, active }), {
+    "&:hover:after": {
+      transition: `transform ${TRANSITION_TIME}s ease, box-shadow ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s`,
+      boxShadow: theme.shadows[2],
+      transform: "skew(-25deg)",
+    },
+
+    "&:hover:before": {
+      transition: `transform ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s, background 0s ${TRANSITION_TIME}s`,
+      background: theme.palette.secondary.main,
+      transform: "skew(-25deg) translate(8px, -8px)",
+    },
+  });
+
+const getDesktopTouch = ({ theme, active }) =>
+  mergician(getDesktopCommon({ theme, active }), {
+    zIndex: "2",
+    "&::after": {
+      transition: active
+        ? `transform ${TRANSITION_TIME}s ease, box-shadow ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s`
+        : `transform ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s, box-shadow ${TRANSITION_TIME}s ease`,
+    },
+
+    "&::before": {
+      transition: active
+        ? `transform ${TRANSITION_TIME}s ease ${TRANSITION_TIME}s, background 0s ${TRANSITION_TIME}s`
+        : `transform ${TRANSITION_TIME}s ease, background 0s ${TRANSITION_TIME}s`,
+    },
+  });
+
+const getMobileCommon = ({ theme, active }) => ({
+  marginLeft: theme.spacing(1),
+  marginRight: theme.spacing(1),
+  "&::after": {
+    transform: "skew(-25deg)",
+    transition: `box-shadow ${MOBILE_TRANSITION_TIME}s ease`,
+    boxShadow: active ? theme.shadows[6] : theme.shadows[2],
+  },
+
+  "&::before": {
+    bottom: 0,
+    left: "-6px",
+    height: "3px",
+    width: active ? "100%" : "0%",
+    transform: "skew(-25deg)",
+    transition: `width ${MOBILE_TRANSITION_TIME}s ease`,
     background: theme.palette.secondary.main,
-    transform: "skew(-25deg) translate(8px, -8px)",
+  },
+});
+
+const getMobileNoTouch = ({ theme }) => ({
+  "&:hover:after": {
+    boxShadow: theme.shadows[6],
+  },
+  "&:hover:before": {
+    width: "100%",
   },
 });
 
@@ -77,7 +129,9 @@ const FlexContainer = styled(Box)({
   flexWrap: "nowrap",
 });
 
-const NavBarContainer = styled(FlexContainer)(({ theme }) => ({
+const NavBarContainer = styled("nav")(({ theme }) => ({
+  display: "flex",
+  flexWrap: "nowrap",
   position: "fixed",
   top: "0",
   zIndex: "1200",
@@ -114,22 +168,28 @@ const LogoImg = styled("img")({
   height: "100%",
 });
 
-const StyledLink = styled(Link)(getNavItemStyles);
+const StyledLink = styled(Link)(getNavItem);
 
-const StyledListItem = styled(NavItemContainer)(getNavItemStyles);
+const StyledListItem = styled(NavItemContainer)(getNavItem);
 
 const StyledListItemDesktop = styled(StyledListItem, {
   shouldForwardProp: (prop) => prop !== "active",
-})(getRootNavItemDesktopStyles);
+})(getDesktop);
 
 //-------------------------------------------------------------
 
 const StyledLinkDesktop = styled(StyledLink, {
   shouldForwardProp: (prop) => prop !== "active",
-})(getRootNavItemDesktopStyles);
+})(getDesktop);
+
+const StyledLinkDesktopTouch = styled(StyledLink, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(({ theme, active }) => ({
+  ...getDesktopTouch({ theme, active }),
+  zIndex: "0",
+}));
 
 const NavMenuOpenDesktop = styled(StyledListItemDesktop)({
-  position: "relative",
   "&:hover": {
     "& .desktopMenuList": {
       display: "block",
@@ -137,15 +197,21 @@ const NavMenuOpenDesktop = styled(StyledListItemDesktop)({
   },
 });
 
-const NavMenuItemsContainer = styled(List)({
-  display: "none",
+const NavMenuOpenDesktopTouch = styled(StyledListItem, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(getDesktopTouch);
+
+const NavMenuItemsContainer = styled(List, {
+  shouldForwardProp: (prop) => prop !== "open",
+})(({ open }) => ({
+  display: open ? "block" : "none",
   position: "absolute",
   left: "0",
   width: "150px",
   transform: "translate(-6.5px, 4px)",
   paddingTop: "10px",
   paddingBottom: "0px",
-});
+}));
 
 const NavMenuItemContainer = styled(ListItem)(({ theme }) => ({
   margin: "0px",
@@ -178,32 +244,15 @@ const NavMenuItem = styled(Link, {
   },
 }));
 
-const StyledLinkMobile = styled(StyledLink, {
+const StyledLinkMobileNoTouch = styled(StyledLink, {
   shouldForwardProp: (prop) => prop !== "active",
-})(({ theme, active }) => ({
-  marginLeft: theme.spacing(1.2),
-  marginRight: theme.spacing(3),
-  "&::after": {
-    transform: "skew(-25deg)",
-    transition: `box-shadow ${MOBILE_TRANSITION_TIME}s ease`,
-    boxShadow: active ? theme.shadows[6] : theme.shadows[2],
-  },
-  "&:hover:after": {
-    boxShadow: theme.shadows[6],
-  },
-  "&::before": {
-    bottom: 0,
-    left: "-6px",
-    height: "3px",
-    width: active ? "100%" : "0%",
-    transform: "skew(-25deg)",
-    transition: `width ${MOBILE_TRANSITION_TIME}s ease`,
-    background: theme.palette.ternary.main,
-  },
-  "&:hover:before": {
-    width: "100%",
-  },
-}));
+})(({ theme, active }) =>
+  mergician(getMobileCommon({ theme, active }), getMobileNoTouch({ theme }))
+);
+
+const StyledLinkMobileTouch = styled(StyledLink, {
+  shouldForwardProp: (prop) => prop !== "active",
+})(getMobileCommon);
 
 export {
   NavBarContainer,
@@ -213,9 +262,12 @@ export {
   Figure,
   LogoImg,
   StyledLinkDesktop,
-  StyledLinkMobile,
+  StyledLinkDesktopTouch,
+  StyledLinkMobileNoTouch,
+  StyledLinkMobileTouch,
   NavMenuOpenDesktop,
   NavMenuItemsContainer,
   NavMenuItemContainer,
   NavMenuItem,
+  NavMenuOpenDesktopTouch,
 };
