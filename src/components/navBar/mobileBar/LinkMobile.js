@@ -1,12 +1,28 @@
 import PropTypes from "prop-types";
 import { Typography } from "@mui/material";
-import { StyledLinkMobile } from "components/navBar/Styles.js";
+import {
+  StyledLinkMobileNoTouch,
+  StyledLinkMobileTouch,
+} from "components/navBar/Styles.js";
+import RenderIf from "components/RenderIf";
+import useCheckTouchScreen from "hooks/useCheckTouchScreen";
 
 const LinkMobile = ({ children, to, ...props }) => {
+  const { isTouchScreen } = useCheckTouchScreen();
+
   return (
-    <StyledLinkMobile to={to} {...props}>
-      <Typography variant="button">{children}</Typography>
-    </StyledLinkMobile>
+    <>
+      <RenderIf condition={!isTouchScreen}>
+        <StyledLinkMobileNoTouch to={to} {...props}>
+          <Typography variant='button'>{children}</Typography>
+        </StyledLinkMobileNoTouch>
+      </RenderIf>
+      <RenderIf condition={isTouchScreen}>
+        <StyledLinkMobileTouch to={to} {...props}>
+          <Typography variant='button'>{children}</Typography>
+        </StyledLinkMobileTouch>
+      </RenderIf>
+    </>
   );
 };
 
