@@ -1,5 +1,6 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { theme } from "../src/themes/index.js";
+import { withRouter } from "storybook-addon-react-router-v6";
 import { useMemo } from "react";
 
 const THEMES = {
@@ -16,6 +17,7 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  layout: "fullscreen",
 };
 
 export const withMuiTheme = (Story, context) => {
@@ -33,7 +35,7 @@ export const withMuiTheme = (Story, context) => {
   );
 };
 
-export const decorators = [withMuiTheme];
+export const decorators = [withMuiTheme, withRouter];
 
 export const globalTypes = {
   theme: {

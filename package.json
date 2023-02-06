@@ -17,8 +17,10 @@
     "@emotion/styled": "^11.10.5",
     "@mui/material": "^5.11.6",
     "@storybook/addon-a11y": "^6.5.15",
+    "mergician": "^1.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.3",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
@@ -45,7 +47,8 @@
     "jest-extended": "^3.2.3",
     "prop-types": "^15.8.1",
     "react-scripts": "5.0.1",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "storybook-addon-react-router-v6": "^0.2.1"
   },
   "overrides": {
     "react": "^18.2.0",
