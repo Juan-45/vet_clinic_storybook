@@ -73,7 +73,7 @@ export default {
   },
 };
 
-const Template = (args) => <NavBar {...args} />;
+export const Template = (args) => <NavBar {...args} />;
 
 const DefaultNavBar = Template.bind({});
 
