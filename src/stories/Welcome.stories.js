@@ -9,10 +9,15 @@ import {
   HighlightSecondary,
   LinkContainer,
 } from "components/welcome/Styles";
-import home_1920x1110_c from "stories/assets/home_1920x1110_c.jpg";
-import historyBackground from "stories/assets/history_2_2620x1780_c.jpg";
 import { Box } from "@mui/material";
 import * as NavBar from "stories/NavBar.stories";
+import home_1920x1110_c from "stories/assets/home_1920x1110_c.jpg";
+import home_1200x800_c from "stories/assets/home_1200x800_c.jpg";
+import home_900x600_c from "stories/assets/home_900x600_c.jpg";
+import history_1920x780_c from "stories/assets/history_1920x780_c.jpg";
+import history_1200x494_c from "stories/assets/history_1200x494_c.jpg";
+import history_900x369_c from "stories/assets/history_900x369_c.jpg";
+import { styled } from "@mui/material/styles";
 
 export default {
   component: Welcome,
@@ -20,25 +25,15 @@ export default {
     children: {
       description: "Children Nodes",
     },
-    /*  src: {
-      defaultValue: homeSmall,
+    src: {
+      defaultValue: home_1920x1110_c,
       control: { type: "text" },
       description: "Image url",
     },
-    srcset: {
-      defaultValue: `${homeMedium} 1200w`,
-      control: { type: "text" },
-      description: "Image url",
-    },*/
-    center: {
-      defaultValue: false,
-      control: { type: "boolean" },
-      description: "Change justify-content value in screens 400px wide or less",
-    },
-    fullPage: {
-      defaultValue: true,
-      control: { type: "boolean" },
-      description: "Change height value to 70vh in screens 850px wide or more",
+    sourceOptions: {
+      defaultValue: [],
+      control: { type: "object" },
+      description: "Array of objects with source tag attributes",
     },
   },
 };
@@ -57,13 +52,13 @@ const WrapperWithBar = ({ children }) => (
 export const Home = (args) => (
   <WrapperWithBar>
     <Welcome {...args}>
-      <TextContainer fullPage={true}>
+      <TextContainer>
         <Blurb variant='h1' color='primary'>
           <HiglightTitle>Pet Paw</HiglightTitle>, el lugar donde cuidamos de tu
           mejor amigo.
         </Blurb>
       </TextContainer>
-      <TextContainer fullPage={true}>
+      <TextContainer>
         <SecondaryText color='primary'>
           Servicios de vacunación, exámenes, tratamientos, baños, corte de uñas,
           peluquería y limpieza dental.
@@ -81,29 +76,42 @@ export const Home = (args) => (
     </Welcome>
   </WrapperWithBar>
 );
-///usar picture y source para mostrar la imágen 1920x1110
-//por encima de 1200 px y la de 1200x800 por debajo de 1200px,
-//primero reSize manteniendo relación de aspecto, luego recortar si es necesario
+
 Home.args = {
   src: home_1920x1110_c,
-  center: false,
-  fullPage: true,
+  sourceOptions: [
+    { media: "(min-width: 1200px)", srcset: home_1920x1110_c },
+    { media: "(min-width: 900px)", srcset: home_1200x800_c },
+    { media: "(max-width: 900px)", srcset: home_900x600_c },
+  ],
 };
+
+const Container = styled(TextContainer)(({ theme }) => ({
+  [theme.breakpoints.up("screen_max_850")]: {
+    paddingTop: theme.spacing(10),
+  },
+  [theme.breakpoints.down("screen_max_850")]: {
+    paddingTop: "0px",
+  },
+}));
 
 export const History = (args) => (
   <WrapperWithBar>
     <Welcome {...args}>
-      <TextContainer fullPage={false}>
+      <Container>
         <Blurb variant='h1' color='primary'>
           <HiglightTitle>20 años</HiglightTitle> cuidando de tu mascota.
         </Blurb>
-      </TextContainer>
+      </Container>
     </Welcome>
   </WrapperWithBar>
 );
 
 History.args = {
-  src: historyBackground,
-  center: true,
-  fullPage: false,
+  src: history_1920x780_c,
+  sourceOptions: [
+    { media: "(min-width: 1200px)", srcset: history_1920x780_c },
+    { media: "(min-width: 900px)", srcset: history_1200x494_c },
+    { media: "(max-width: 900px)", srcset: history_900x369_c },
+  ],
 };

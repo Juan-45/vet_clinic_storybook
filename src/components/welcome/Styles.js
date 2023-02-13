@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Box, Typography } from "@mui/material";
 import { MediumContainer } from "components/CommonStyles";
 import { styled } from "@mui/material/styles";
@@ -55,20 +56,48 @@ const sideFadeStyles = {
   },
 };
 
-const StyledImg = styled("img", {
-  shouldForwardProp: (prop) => prop !== "fullPage",
-})(({ theme, fullPage }) => ({
+//NO SE PUEDE HACER SCROLL EN MOBILE MENU
+
+const StyledImg = styled("img")(({ theme }) => ({
   objectFit: "cover",
   width: "100%",
   background: "gray",
-  [theme.breakpoints.up("screen_max_850")]: {
-    height: fullPage ? "initial" : "80vh",
-  },
 }));
 
-const Background = ({ fullPage, ...props }) => (
-  <StyledImg alt='welcome' fullPage={fullPage} {...props} />
-);
+const StyledPicture = styled("picture")({
+  lineHeight: 0,
+});
+
+const Background = ({ src, sourceOptions }) => {
+  let sources = null;
+
+  if (sourceOptions.length !== 0) {
+    sources = sourceOptions.map((item) => (
+      <source key={item.srcset} media={item.media} srcSet={item.srcset} />
+    ));
+  }
+
+  return (
+    <StyledPicture>
+      {sources}
+      <StyledImg alt='welcome' src={src} />
+    </StyledPicture>
+  );
+};
+
+Background.prototype = {
+  src: PropTypes.string,
+  sourceOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      media: PropTypes.string,
+      srcset: PropTypes.string,
+    })
+  ),
+};
+
+Background.defaultProps = {
+  sourceOptions: {},
+};
 
 const Container = styled(Box)({
   display: "flex",
@@ -77,9 +106,7 @@ const Container = styled(Box)({
   position: "relative",
 });
 
-const InnerContainer = styled(MediumContainer, {
-  shouldForwardProp: (prop) => prop !== "center",
-})(({ theme, center }) => ({
+const InnerContainer = styled(MediumContainer)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -88,21 +115,14 @@ const InnerContainer = styled(MediumContainer, {
   top: 0,
   height: "100%",
   padding: theme.spacing(2),
-  [theme.breakpoints.down("screen_max_400")]: {
-    justifyContent: !center ? "flex-start" : "center",
-  },
 }));
 
-const TextContainer = styled(Box, {
-  shouldForwardProp: (prop) => prop !== "fullPage",
-})(({ theme, fullPage }) => ({
+const TextContainer = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up("screen_max_850")]: {
     marginBottom: theme.spacing(4),
-    paddingTop: fullPage ? "0px" : "100px",
   },
   [theme.breakpoints.down("screen_max_850")]: {
     marginBottom: theme.spacing(1.5),
-    paddingTop: "0px",
   },
 }));
 
