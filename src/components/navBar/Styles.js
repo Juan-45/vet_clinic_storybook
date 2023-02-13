@@ -112,6 +112,7 @@ const NavDrawerContainer = styled(Box)(({ theme }) => ({
   left: 0,
   height: "100%",
   width: "100%",
+  overflowY: "scroll",
 }));
 
 const CloseDrawerButton = styled(IconButton)(({ theme }) => ({
@@ -338,6 +339,7 @@ const NavMenuOpenMobile = styled(StyledListItem, {
     "& .mobileMenuList": {
       transform: "translate(-9px, 4px)",
       width: "100%",
+      paddingBottom: theme.spacing(2),
     },
   })
 );
