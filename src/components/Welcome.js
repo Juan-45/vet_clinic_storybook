@@ -6,11 +6,11 @@ import {
 } from "components/welcome/Styles";
 import PropTypes from "prop-types";
 
-const Welcome = ({ children, /*src, srcset,*/ center, fullPage, ...props }) => {
+const Welcome = ({ children, ...props }) => {
   return (
     <Container>
-      <Background fullPage={fullPage} {...props} />
-      <InnerContainer center={center}>{children}</InnerContainer>
+      <Background {...props} />
+      <InnerContainer>{children}</InnerContainer>
       <BottomCurve />
     </Container>
   );
@@ -18,15 +18,17 @@ const Welcome = ({ children, /*src, srcset,*/ center, fullPage, ...props }) => {
 
 Welcome.prototype = {
   children: PropTypes.node,
-  /* src: PropTypes.string,
-  srcset: PropTypes.string,*/
-  center: PropTypes.bool,
-  fullPage: PropTypes.bool,
+  src: PropTypes.string,
+  sourceOptions: PropTypes.arrayOf(
+    PropTypes.shape({
+      media: PropTypes.string,
+      srcset: PropTypes.string,
+    })
+  ),
 };
 
 Welcome.defaultProps = {
-  center: false,
-  fullPage: true,
+  sourceOptions: {},
 };
 
 export default Welcome;
