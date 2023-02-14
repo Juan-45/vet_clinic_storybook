@@ -1,6 +1,7 @@
 import React from "react";
 import MainServices from "components/MainServices";
 import * as FeaturedTitle from "stories/FeaturedTitle.stories";
+import * as Divider from "stories/Divider.stories";
 import { Box } from "@mui/material";
 
 export default {
@@ -31,6 +32,7 @@ export const Playground = (args) => (
       flexWrap: "wrap",
     }}
   >
+    <Divider.Template />
     <FeaturedTitle.Template />
     <MainServices {...args} />
   </Box>
