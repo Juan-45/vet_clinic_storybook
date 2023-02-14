@@ -137,9 +137,6 @@ const Blurb = styled(Typography)(({ theme }) =>
     [theme.breakpoints.up("tablet_min_1200")]: {
       fontSize: "3.5rem",
     },
-    [theme.breakpoints.down("mobile_max_750")]: {
-      lineHeight: 1.2,
-    },
     [theme.breakpoints.down("screen_max_400")]: {
       fontSize: "1.5rem",
     },
@@ -160,13 +157,6 @@ const LinkContainer = styled(Box)({
   visibility: "hidden",
   animation: `${ANIMATION_TIME}s ease ${FADE_DELAY}s forwards ${fade}`,
 });
-
-const HighlightSecondary = styled("span")(({ theme }) => ({
-  color: theme.palette.error.main,
-  fontWeight: 600,
-  textDecoration: "underline",
-  paddingLeft: "8px",
-}));
 
 const HiglightTitle = styled("span")(({ theme }) => ({
   color: theme.palette.info.main,
@@ -206,7 +196,6 @@ export {
   Blurb,
   SecondaryText,
   LinkContainer,
-  HighlightSecondary,
   HiglightTitle,
   BottomCurve,
 };

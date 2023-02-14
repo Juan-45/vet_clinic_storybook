@@ -14,6 +14,7 @@ const StyledPageLink = styled(Link)(({ theme }) => ({
   color: theme.palette.text.primary,
   background: theme.palette.primary.main,
   textDecoration: "unset",
+  transition: `box-shadow ${TRANSITION_TIME}s ease`,
   "&::after": {
     position: "absolute",
     content: "''",
@@ -26,6 +27,9 @@ const StyledPageLink = styled(Link)(({ theme }) => ({
   },
   "&:hover:after": {
     width: "100%",
+  },
+  "&:hover": {
+    boxShadow: theme.shadows[3],
   },
 }));
 

@@ -6,9 +6,9 @@ import {
   Blurb,
   SecondaryText,
   HiglightTitle,
-  HighlightSecondary,
   LinkContainer,
 } from "components/welcome/Styles";
+import { HighlightSecondary } from "components/CommonStyles";
 import { Box } from "@mui/material";
 import * as NavBar from "stories/NavBar.stories";
 import home_1920x1110_c from "stories/assets/home_1920x1110_c.jpg";
