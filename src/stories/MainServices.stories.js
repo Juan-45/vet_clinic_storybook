@@ -1,5 +1,6 @@
 import React from "react";
 import MainServices from "components/MainServices";
+import * as FeaturedTitle from "stories/FeaturedTitle.stories";
 import { Box } from "@mui/material";
 
 export default {
@@ -23,12 +24,14 @@ export const Playground = (args) => (
   <Box
     sx={{
       minWidth: "360px",
-      background: "#f6f0e8",
+      background: "#e9f1f6",
       padding: "20px",
       display: "flex",
       justifyContent: "center",
+      flexWrap: "wrap",
     }}
   >
+    <FeaturedTitle.Template />
     <MainServices {...args} />
   </Box>
 );
