@@ -31,6 +31,7 @@ export const lightTheme = createTheme({
       main: "#7FA7C3",
     },
     ternary: {
+      light: "#f6f0e8",
       main: "#956730",
     },
   },
@@ -45,7 +46,7 @@ export const lightTheme = createTheme({
       mobile_max_599: 600,
       screen_max_400: 401,
       lg: 1200,
-      md: 751,
+      md: 750,
       sm: 600,
       xs: 0,
     },
@@ -78,19 +79,19 @@ export const lightTheme = createTheme({
       },
     },
     h2: {
-      lineHeight: 1.5,
+      lineHeight: 1.2,
       [tablet_min_600]: {
         fontSize: "1.8rem",
       },
       [mobile_max_750]: {
-        fontSize: "1.3rem",
+        fontSize: "1.5rem",
       },
       [mobile_max_599]: {
-        fontSize: "1.3rem",
+        fontSize: "1.5rem",
       },
     },
     subtitle1: {
-      lineHeight: 1.5,
+      lineHeight: 1.2,
       fontWeight: 600,
       [tablet_min_600]: {
         fontSize: "1.2rem",
