@@ -28,10 +28,13 @@ export const lightTheme = createTheme({
       main: "#fff",
     },
     secondary: {
+      light: "#e9f1f6",
+      medium: "#c3d7e3",
       main: "#7FA7C3",
     },
     ternary: {
       light: "#f6f0e8",
+      medium: "#dfd2c1",
       main: "#956730",
     },
   },
@@ -72,6 +75,7 @@ export const lightTheme = createTheme({
       /*Includes: mobile landscape < 749px*/
       [mobile_max_750]: {
         fontSize: "2rem",
+        lineHeight: 1.2,
       },
       /*Includes: mobile portrait*/
       [mobile_max_599]: {
