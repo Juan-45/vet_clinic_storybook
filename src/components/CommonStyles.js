@@ -5,4 +5,15 @@ const MediumContainer = styled(Box)({
   maxWidth: "900px",
 });
 
-export { MediumContainer };
+const LargeContainer = styled(Box)({
+  maxWidth: "1200px",
+});
+
+const HighlightSecondary = styled("span")(({ theme }) => ({
+  color: theme.palette.error.main,
+  fontWeight: 600,
+  textDecoration: "underline",
+  paddingLeft: "8px",
+}));
+
+export { MediumContainer, LargeContainer, HighlightSecondary };

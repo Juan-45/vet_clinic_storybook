@@ -161,13 +161,6 @@ const LinkContainer = styled(Box)({
   animation: `${ANIMATION_TIME}s ease ${FADE_DELAY}s forwards ${fade}`,
 });
 
-const HighlightSecondary = styled("span")(({ theme }) => ({
-  color: theme.palette.error.main,
-  fontWeight: 600,
-  textDecoration: "underline",
-  paddingLeft: "8px",
-}));
-
 const HiglightTitle = styled("span")(({ theme }) => ({
   color: theme.palette.info.main,
   fontWeight: 600,
@@ -206,7 +199,6 @@ export {
   Blurb,
   SecondaryText,
   LinkContainer,
-  HighlightSecondary,
   HiglightTitle,
   BottomCurve,
 };
