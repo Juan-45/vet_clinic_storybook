@@ -20,12 +20,12 @@ const HighlightSecondary = styled("span")(({ theme }) => ({
 const FeaturedTitleContainer = styled(Box)(({ theme }) => ({
   marginLeft: "24px",
   marginTop: "90px",
-  marginBottom: "69px",
+  marginBottom: "30px",
 
   [theme.breakpoints.down("screen_max_850")]: {
     marginLeft: "24px",
     marginTop: "67px",
-    marginBottom: "49px",
+    marginBottom: "42px",
   },
 }));
 
@@ -93,7 +93,7 @@ const ReflectedText = styled(Typography)(({ theme }) =>
   mergician(getCommonFeaturedTitleStyles({ theme }), {
     transform: "rotatex(180deg) translateY(14px) scale(1, 1.4)",
     maskImage: "linear-gradient(transparent 20%, white 100%)",
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.disabled,
     [theme.breakpoints.down("screen_max_850")]: {
       display: "none",
     },
