@@ -14,7 +14,7 @@ It'll hold the layout components for a portfolio project, a Vet Clinic frontend.
 - The master branch will hold ready for production code.
 - The develop branch will hold already done features.
 - Each main components, like footer, nav bar, etc, will be developed in its own branch. Each feature branch will be named as follow: "feature_" + featureName. Each feature branch will be merged against the develop branch.
-- Any necessary fix to be made will be developed on a "hotFix" branch, which will be named as follow: "hotFix_" + bug + component. Each of this branches will be merged against the master branch.
+- Any necessary fix to be made will be developed on a "hotFix" branch, which will be named as follow: "hotFix_" + bug + component. The same criteria will be used for any necessary update, that includes small changes no a new feature, the branch will be named as follow: "update_" + update description + component. Each of this branches will be merged against the master branch.
 
 ## Running Storybook
 
