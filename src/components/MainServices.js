@@ -1,6 +1,6 @@
 import PageLink from "components/PageLink";
-import { LargeContainer } from "components/CommonStyles";
-import { HighlightSecondary } from "components/CommonStyles";
+import { LargeContainer, FlexRowCenter } from "components/CommonStyles";
+import { HighlightRed } from "components/CommonStyles";
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import mergician from "mergician";
@@ -9,18 +9,10 @@ import toothbrush from "stories/assets/toothbrush.png";
 import bed from "stories/assets/bed.png";
 import ambulance from "stories/assets/ambulance.png";
 
-import PropTypes from "prop-types";
-
 const Container = styled(LargeContainer)({
   display: "flex",
   alignItems: "flex-start",
   flexWrap: "wrap",
-});
-
-const LinksContainer = styled(Box)({
-  width: "100%",
-  display: "flex",
-  justifyContent: "center",
 });
 
 const ServicesListContainer = styled(Box)(({ theme }) => ({
@@ -80,16 +72,7 @@ const Description = styled(Typography)(({ theme }) =>
   mergician(getCommonStyles({ theme }), { marginBottom: "0px" })
 );
 
-const MainServices = ({ linksList }) => {
-  const links = linksList.map((item) => (
-    <PageLink
-      label={item.label}
-      to={item.to}
-      key={item.label}
-      sx={{ marginLeft: "8px", marginRight: "8px" }}
-    />
-  ));
-
+const MainServices = () => {
   return (
     <Container>
       <ServicesListContainer>
@@ -123,33 +106,25 @@ const MainServices = ({ linksList }) => {
           <Description>
             Atendemos tu emergencia las 24/7: estamos aquí para proteger la
             salud de tu mascota.
-          </Description>
-          <HighlightSecondary sx={{ fontSize: "1.5rem", textAlign: "center" }}>
+          </Description>{" "}
+          <HighlightRed sx={{ fontSize: "1.5rem", textAlign: "center" }}>
             Te: 555-555-555
-          </HighlightSecondary>
+          </HighlightRed>
         </InfoContainer>
       </ServicesListContainer>
-      <LinksContainer>{links}</LinksContainer>
+      <FlexRowCenter>
+        <PageLink
+          to='/?path=/story/stories-mainservices--playground'
+          sx={{ marginRight: "32px" }}
+        >
+          Ver todo
+        </PageLink>
+        <PageLink to='/?path=/story/stories-mainservices--playground'>
+          Solicitar turno
+        </PageLink>
+      </FlexRowCenter>
     </Container>
   );
-};
-
-MainServices.prototype = {
-  linksList: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string,
-      to: PropTypes.string,
-    })
-  ).isRequired,
-};
-
-MainServices.defaultProps = {
-  linksList: [
-    {
-      label: "",
-      to: "",
-    },
-  ],
 };
 
 export default MainServices;
