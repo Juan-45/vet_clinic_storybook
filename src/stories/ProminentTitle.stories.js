@@ -1,9 +1,9 @@
 import React from "react";
 import { Box } from "@mui/material";
-import { FeaturedTitle } from "components/CommonStyles";
+import ProminentTitle from "components/ProminentTitle";
 
 export default {
-  component: FeaturedTitle,
+  component: ProminentTitle,
   argTypes: {
     children: {
       defaultValue: "Test",
@@ -23,6 +23,8 @@ export const Template = (args) => (
       justifyContent: "center",
     }}
   >
-    <FeaturedTitle {...args}>Cuidados Integrales para tu Mascota</FeaturedTitle>
+    <ProminentTitle {...args}>
+      Cuidados Integrales para tu Mascota
+    </ProminentTitle>
   </Box>
 );
