@@ -9,8 +9,6 @@ import toothbrush from "stories/assets/toothbrush.png";
 import bed from "stories/assets/bed.png";
 import ambulance from "stories/assets/ambulance.png";
 
-import PropTypes from "prop-types";
-
 const Container = styled(LargeContainer)({
   display: "flex",
   alignItems: "flex-start",
@@ -74,17 +72,7 @@ const Description = styled(Typography)(({ theme }) =>
   mergician(getCommonStyles({ theme }), { marginBottom: "0px" })
 );
 
-const MainServices = ({ linksList }) => {
-  const links = linksList.map((item, index) => (
-    <PageLink
-      to={item.to}
-      key={item.label}
-      sx={{ marginRight: index === 0 ? "32px" : "0px" }}
-    >
-      {item.label}
-    </PageLink>
-  ));
-
+const MainServices = () => {
   return (
     <Container>
       <ServicesListContainer>
@@ -124,27 +112,19 @@ const MainServices = ({ linksList }) => {
           </HighlightRed>
         </InfoContainer>
       </ServicesListContainer>
-      <FlexRowCenter>{links}</FlexRowCenter>
+      <FlexRowCenter>
+        <PageLink
+          to='/?path=/story/stories-mainservices--playground'
+          sx={{ marginRight: "32px" }}
+        >
+          Ver todo
+        </PageLink>
+        <PageLink to='/?path=/story/stories-mainservices--playground'>
+          Solicitar turno
+        </PageLink>
+      </FlexRowCenter>
     </Container>
   );
-};
-
-MainServices.prototype = {
-  linksList: PropTypes.arrayOf(
-    PropTypes.shape({
-      label: PropTypes.string,
-      to: PropTypes.string,
-    })
-  ).isRequired,
-};
-
-MainServices.defaultProps = {
-  linksList: [
-    {
-      label: "",
-      to: "",
-    },
-  ],
 };
 
 export default MainServices;

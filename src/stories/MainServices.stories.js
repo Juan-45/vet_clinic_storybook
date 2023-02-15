@@ -6,22 +6,9 @@ import { Box } from "@mui/material";
 
 export default {
   component: MainServices,
-  argTypes: {
-    linksList: {
-      defaultValue: [
-        {
-          label: "",
-          to: "",
-        },
-      ],
-      control: { type: "object" },
-      description:
-        "Array of objects with props for React-Router's Link components",
-    },
-  },
 };
 
-export const Playground = (args) => (
+export const Playground = () => (
   <Box
     sx={{
       minWidth: "360px",
@@ -34,19 +21,6 @@ export const Playground = (args) => (
   >
     <Divider.Template />
     <ProminentTitle.Template />
-    <MainServices {...args} />
+    <MainServices />
   </Box>
 );
-
-Playground.args = {
-  linksList: [
-    {
-      label: "Ver todo",
-      to: "/?path=/story/stories-mainservices--playground",
-    },
-    {
-      label: "Solicitar turno",
-      to: "/?path=/story/stories-mainservices--playground",
-    },
-  ],
-};
