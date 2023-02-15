@@ -1,6 +1,6 @@
 import React from "react";
 import MainServices from "components/MainServices";
-import * as FeaturedTitle from "stories/FeaturedTitle.stories";
+import * as ProminentTitle from "stories/ProminentTitle.stories";
 import * as Divider from "stories/Divider.stories";
 import { Box } from "@mui/material";
 
@@ -33,7 +33,7 @@ export const Playground = (args) => (
     }}
   >
     <Divider.Template />
-    <FeaturedTitle.Template />
+    <ProminentTitle.Template />
     <MainServices {...args} />
   </Box>
 );
