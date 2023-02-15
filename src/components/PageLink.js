@@ -33,9 +33,9 @@ const StyledPageLink = styled(Link)(({ theme }) => ({
   },
 }));
 
-const PageLink = ({ to, label, ...props }) => (
+const PageLink = ({ to, children, ...props }) => (
   <StyledPageLink to={to} {...props}>
-    <Typography variant='button'>{label}</Typography>
+    <Typography variant='button'>{children}</Typography>
   </StyledPageLink>
 );
 
