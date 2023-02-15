@@ -3,10 +3,10 @@ import {
   Background,
   InnerContainer,
   BottomCurve,
-} from "components/welcome/Styles";
+} from "components/header/Styles";
 import PropTypes from "prop-types";
 
-const Welcome = ({ children, ...props }) => {
+const Header = ({ children, ...props }) => {
   return (
     <Container>
       <Background {...props} />
@@ -16,7 +16,7 @@ const Welcome = ({ children, ...props }) => {
   );
 };
 
-Welcome.prototype = {
+Header.prototype = {
   children: PropTypes.node,
   src: PropTypes.string,
   sourceOptions: PropTypes.arrayOf(
@@ -27,8 +27,8 @@ Welcome.prototype = {
   ),
 };
 
-Welcome.defaultProps = {
+Header.defaultProps = {
   sourceOptions: {},
 };
 
-export default Welcome;
+export default Header;

@@ -56,8 +56,6 @@ const sideFadeStyles = {
   },
 };
 
-//NO SE PUEDE HACER SCROLL EN MOBILE MENU
-
 const StyledImg = styled("img")(({ theme }) => ({
   objectFit: "cover",
   width: "100%",
@@ -80,7 +78,7 @@ const Background = ({ src, sourceOptions }) => {
   return (
     <StyledPicture>
       {sources}
-      <StyledImg alt='welcome' src={src} />
+      <StyledImg alt='Header background' src={src} />
     </StyledPicture>
   );
 };
@@ -158,7 +156,7 @@ const LinkContainer = styled(Box)({
   animation: `${ANIMATION_TIME}s ease ${FADE_DELAY}s forwards ${fade}`,
 });
 
-const HiglightTitle = styled("span")(({ theme }) => ({
+const HighlightBlue = styled("span")(({ theme }) => ({
   color: theme.palette.info.main,
   fontWeight: 600,
   textDecoration: "underline",
@@ -196,6 +194,6 @@ export {
   Blurb,
   SecondaryText,
   LinkContainer,
-  HiglightTitle,
+  HighlightBlue,
   BottomCurve,
 };

@@ -1,14 +1,14 @@
 import React from "react";
-import Welcome from "components/Welcome";
+import Header from "components/Header";
 import PageLink from "components/PageLink";
 import {
   TextContainer,
   Blurb,
   SecondaryText,
-  HiglightTitle,
+  HighlightBlue,
   LinkContainer,
-} from "components/welcome/Styles";
-import { HighlightSecondary } from "components/CommonStyles";
+} from "components/header/Styles";
+import { HighlightRed } from "components/CommonStyles";
 import { Box } from "@mui/material";
 import * as NavBar from "stories/NavBar.stories";
 import home_1920x1110_c from "stories/assets/home_1920x1110_c.jpg";
@@ -20,7 +20,7 @@ import history_900x369_c from "stories/assets/history_900x369_c.jpg";
 import { styled } from "@mui/material/styles";
 
 export default {
-  component: Welcome,
+  component: Header,
   argTypes: {
     children: {
       description: "Children Nodes",
@@ -51,29 +51,26 @@ const WrapperWithBar = ({ children }) => (
 
 export const Home = (args) => (
   <WrapperWithBar>
-    <Welcome {...args}>
+    <Header {...args}>
       <TextContainer>
         <Blurb variant='h1' color='primary'>
-          <HiglightTitle>Pet Paw</HiglightTitle>, el lugar donde cuidamos de tu
+          <HighlightBlue>Pet Paw</HighlightBlue>, el lugar donde cuidamos de tu
           mejor amigo.
         </Blurb>
       </TextContainer>
       <TextContainer>
         <SecondaryText color='primary'>
           Servicios de vacunación, exámenes, tratamientos, baños, corte de uñas,
-          peluquería y limpieza dental.
-          <HighlightSecondary>
-            Atendemos emergencias las 24hs.
-          </HighlightSecondary>
+          peluquería y limpieza dental.{" "}
+          <HighlightRed>Atendemos emergencias las 24hs.</HighlightRed>
         </SecondaryText>
       </TextContainer>
       <LinkContainer>
-        <PageLink
-          label='Solicitar una entrevista'
-          to='/?path=/story/stories-pageLink--playground'
-        />
+        <PageLink to='/?path=/story/stories-pageLink--playground'>
+          Solicitar una entrevista
+        </PageLink>
       </LinkContainer>
-    </Welcome>
+    </Header>
   </WrapperWithBar>
 );
 
@@ -97,13 +94,13 @@ const Container = styled(TextContainer)(({ theme }) => ({
 
 export const History = (args) => (
   <WrapperWithBar>
-    <Welcome {...args}>
+    <Header {...args}>
       <Container>
         <Blurb variant='h1' color='primary'>
-          <HiglightTitle>20 años</HiglightTitle> cuidando de tu mascota.
+          <HighlightBlue>20 años</HighlightBlue> cuidando de tu mascota.
         </Blurb>
       </Container>
-    </Welcome>
+    </Header>
   </WrapperWithBar>
 );
 
