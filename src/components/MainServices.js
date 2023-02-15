@@ -1,6 +1,6 @@
 import PageLink from "components/PageLink";
-import { LargeContainer } from "components/CommonStyles";
-import { HighlightSecondary } from "components/CommonStyles";
+import { LargeContainer, FlexRowCenter } from "components/CommonStyles";
+import { HighlightRed } from "components/CommonStyles";
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import mergician from "mergician";
@@ -15,12 +15,6 @@ const Container = styled(LargeContainer)({
   display: "flex",
   alignItems: "flex-start",
   flexWrap: "wrap",
-});
-
-const LinksContainer = styled(Box)({
-  width: "100%",
-  display: "flex",
-  justifyContent: "center",
 });
 
 const ServicesListContainer = styled(Box)(({ theme }) => ({
@@ -81,13 +75,14 @@ const Description = styled(Typography)(({ theme }) =>
 );
 
 const MainServices = ({ linksList }) => {
-  const links = linksList.map((item) => (
+  const links = linksList.map((item, index) => (
     <PageLink
-      label={item.label}
       to={item.to}
       key={item.label}
-      sx={{ marginLeft: "8px", marginRight: "8px" }}
-    />
+      sx={{ marginRight: index === 0 ? "32px" : "0px" }}
+    >
+      {item.label}
+    </PageLink>
   ));
 
   return (
@@ -123,13 +118,13 @@ const MainServices = ({ linksList }) => {
           <Description>
             Atendemos tu emergencia las 24/7: estamos aquí para proteger la
             salud de tu mascota.
-          </Description>
-          <HighlightSecondary sx={{ fontSize: "1.5rem", textAlign: "center" }}>
+          </Description>{" "}
+          <HighlightRed sx={{ fontSize: "1.5rem", textAlign: "center" }}>
             Te: 555-555-555
-          </HighlightSecondary>
+          </HighlightRed>
         </InfoContainer>
       </ServicesListContainer>
-      <LinksContainer>{links}</LinksContainer>
+      <FlexRowCenter>{links}</FlexRowCenter>
     </Container>
   );
 };
