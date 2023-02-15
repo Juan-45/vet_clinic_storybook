@@ -21,5 +21,4 @@ const HighlightRed = styled("span")(({ theme }) => ({
   textDecoration: "underline",
 }));
 
-export { MediumContainer, LargeContainer, HighlightSecondary };
-
+export { FlexRowCenter, MediumContainer, LargeContainer, HighlightRed };
