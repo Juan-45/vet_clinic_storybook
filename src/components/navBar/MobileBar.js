@@ -53,17 +53,12 @@ const MobileBar = ({ navigationOptions }) => {
 
   return (
     <>
-      <IconButton
-        color='primary'
-        aria-label='open_mobile_menu'
-        onClick={handleOpen}
-      >
+      <IconButton aria-label='open_mobile_menu' onClick={handleOpen}>
         <MenuIcon fontSize='large' />
       </IconButton>
       <RenderIf condition={open}>
         <NavDrawerContainer>
           <CloseDrawerButton
-            color='primary'
             aria-label='close_mobile_menu'
             onClick={handleClose}
           >

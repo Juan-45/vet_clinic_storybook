@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import { Box, List, ListItem, IconButton } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { TRANSITION_TIME } from "components/CommonStyles";
 import { styled } from "@mui/material/styles";
 import mergician from "mergician";
 
-const TRANSITION_TIME = 0.15;
 const MOBILE_TRANSITION_TIME = 0.25;
 
 const getNavItem = ({ theme }) => ({
@@ -26,7 +26,7 @@ const getNavItem = ({ theme }) => ({
     left: 0,
     height: "100%",
     width: "100%",
-    background: theme.palette.primary.main,
+    background: theme.palette.background.default,
   },
   "&::before": {
     position: "absolute",
@@ -126,11 +126,6 @@ const NavItemContainer = styled(ListItem)({
   width: "initial",
 });
 
-const FlexContainer = styled(Box)({
-  display: "flex",
-  flexWrap: "nowrap",
-});
-
 const NavBarContainer = styled("nav", {
   shouldForwardProp: (prop) => prop !== "scrolling",
 })(({ theme, scrolling }) => ({
@@ -158,32 +153,6 @@ const NavBarContainer = styled("nav", {
     bottom: 0,
   },
 }));
-
-const LogoContainer = styled(FlexContainer)({
-  background: "white",
-  borderRadius: "50%",
-});
-
-const Figure = styled("figure")(({ theme }) => ({
-  margin: "0px",
-  width: "125px",
-  height: "125px",
-  [theme.breakpoints.down("lg")]: {
-    width: "90px",
-    height: "90px",
-  },
-  [theme.breakpoints.down("screen_max_850")]: {
-    width: "60px",
-    height: "60px",
-  },
-}));
-
-const LogoImg = styled("img")({
-  objectFit: "cover",
-  borderRadius: "50%",
-  width: "100%",
-  height: "100%",
-});
 
 const StyledLink = styled(Link)(getNavItem);
 
@@ -246,7 +215,7 @@ const NavMenuItemsContainer = styled(List, {
 const NavMenuItemContainer = styled(ListItem)(({ theme }) => ({
   margin: "0px",
   width: "100%",
-  background: theme.palette.primary.main,
+  background: theme.palette.background.default,
   boxShadow: theme.shadows[2],
   borderBottom: `1px solid ${theme.palette.divider}`,
 }));
@@ -351,9 +320,6 @@ export {
   NavDrawerContainer,
   CloseDrawerButton,
   NavItemContainer,
-  LogoContainer,
-  Figure,
-  LogoImg,
   StyledLinkDesktop,
   StyledLinkDesktopTouch,
   NavMenuOpenDesktop,

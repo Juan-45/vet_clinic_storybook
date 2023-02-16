@@ -1,25 +1,11 @@
 import PropTypes from "prop-types";
-import {
-  NavBarContainer,
-  LogoContainer,
-  Figure,
-  LogoImg,
-} from "components/navBar/Styles";
+import { NavBarContainer } from "components/navBar/Styles";
 import DesktopBar from "components/navBar/DesktopBar";
 import MobileBar from "components/navBar/MobileBar";
 import RenderIf from "components/RenderIf";
+import Logo from "components/Logo";
 import { useMediaQuery } from "@mui/material";
 import useTriggerOnScroll from "hooks/useTriggerOnScroll";
-
-const Logo = ({ homeURL, src, alt, ...props }) => (
-  <LogoContainer>
-    <Figure>
-      <a href={homeURL}>
-        <LogoImg alt={alt} src={src} {...props} />
-      </a>
-    </Figure>
-  </LogoContainer>
-);
 
 const NavBar = ({ navigationOptions, logoOptions, withLogo }) => {
   const { scrolling } = useTriggerOnScroll();

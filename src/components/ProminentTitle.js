@@ -1,5 +1,6 @@
 import { Box, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { TRANSITION_TIME } from "components/CommonStyles";
 import mergician from "mergician";
 
 const ProminentTitleContainer = styled(Box)(({ theme }) => ({
@@ -20,8 +21,6 @@ const getCommonProminentTitleStyles = ({ theme }) => ({
   paddingLeft: theme.spacing(1),
   paddingRight: theme.spacing(1),
 });
-
-const TRANSITION_TIME = 0.15;
 
 const StyledTitle = styled(Typography)(({ theme }) =>
   mergician(getCommonProminentTitleStyles({ theme }), {
