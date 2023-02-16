@@ -1,19 +1,12 @@
-import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { StyledLink, TRANSITION_TIME } from "components/CommonStyles";
 import PropTypes from "prop-types";
 
-const TRANSITION_TIME = 0.15;
-
-const StyledPageLink = styled(Link)(({ theme }) => ({
-  display: "inline-block",
-  position: "relative",
+const StyledPageLink = styled(StyledLink)(({ theme }) => ({
   padding: theme.spacing(1),
-  lineHeight: 1.4,
-  cursor: "pointer",
   color: theme.palette.text.primary,
   background: theme.palette.primary.main,
-  textDecoration: "unset",
   transition: `box-shadow ${TRANSITION_TIME}s ease`,
   "&::after": {
     position: "absolute",

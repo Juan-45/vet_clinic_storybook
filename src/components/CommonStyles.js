@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
 
 const FlexRowCenter = styled(Box)({
   width: "100%",
@@ -21,4 +22,21 @@ const HighlightRed = styled("span")(({ theme }) => ({
   textDecoration: "underline",
 }));
 
-export { FlexRowCenter, MediumContainer, LargeContainer, HighlightRed };
+const StyledLink = styled(Link)({
+  display: "inline-block",
+  position: "relative",
+  lineHeight: 1.4,
+  cursor: "pointer",
+  textDecoration: "unset",
+});
+
+const TRANSITION_TIME = 0.15;
+
+export {
+  FlexRowCenter,
+  MediumContainer,
+  LargeContainer,
+  HighlightRed,
+  StyledLink,
+  TRANSITION_TIME,
+};
