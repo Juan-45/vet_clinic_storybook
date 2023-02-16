@@ -21,6 +21,12 @@ const mobile_max_700 = "@media (max-width:700px)";
 const mobile_max_750 = "@media (max-width:750px)";
 const mobile_max_599 = "@media (max-width:599spx)";
 
+const palette = {
+  background: {
+    transparent: "#ffffff4d",
+  },
+};
+
 export const lightTheme = createTheme({
   palette: {
     mode: "light",
@@ -36,6 +42,12 @@ export const lightTheme = createTheme({
       light: "#f6f0e8",
       medium: "#dfd2c1",
       main: "#956730",
+    },
+    text: {
+      light: "#fff",
+    },
+    background: {
+      transparent: palette.background.transparent,
     },
   },
 
@@ -165,9 +177,14 @@ export const lightTheme = createTheme({
       },
     },
     MuiIconButton: {
+      defaultProps: {
+        color: "primary",
+      },
       styleOverrides: {
-        "&:hover": {
-          background: "rgba(255,255,255,0.3)",
+        root: {
+          "&:hover": {
+            background: palette.background.transparent,
+          },
         },
       },
     },

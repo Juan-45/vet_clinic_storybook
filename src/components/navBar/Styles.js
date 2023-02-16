@@ -26,7 +26,7 @@ const getNavItem = ({ theme }) => ({
     left: 0,
     height: "100%",
     width: "100%",
-    background: theme.palette.primary.main,
+    background: theme.palette.background.default,
   },
   "&::before": {
     position: "absolute",
@@ -215,7 +215,7 @@ const NavMenuItemsContainer = styled(List, {
 const NavMenuItemContainer = styled(ListItem)(({ theme }) => ({
   margin: "0px",
   width: "100%",
-  background: theme.palette.primary.main,
+  background: theme.palette.background.default,
   boxShadow: theme.shadows[2],
   borderBottom: `1px solid ${theme.palette.divider}`,
 }));

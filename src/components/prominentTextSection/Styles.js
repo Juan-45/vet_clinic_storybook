@@ -56,7 +56,7 @@ const ParagraphContainer = styled(Box)(({ theme }) => ({
   border: `3px solid ${theme.palette.ternary.medium}`,
   borderRightWidth: "0px",
   padding: theme.spacing(2),
-  background: theme.palette.primary.main,
+  background: theme.palette.background.default,
   boxShadow: theme.shadows[2],
   "&.paragraphContainerBesideImg": {
     [theme.breakpoints.up("tablet_min_900")]: {

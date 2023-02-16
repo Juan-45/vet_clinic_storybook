@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 const StyledPageLink = styled(StyledLink)(({ theme }) => ({
   padding: theme.spacing(1),
   color: theme.palette.text.primary,
-  background: theme.palette.primary.main,
+  background: theme.palette.background.default,
   transition: `box-shadow ${TRANSITION_TIME}s ease`,
   "&::after": {
     position: "absolute",

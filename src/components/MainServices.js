@@ -25,7 +25,7 @@ const ServicesListContainer = styled(Box)(({ theme }) => ({
 
 const InfoContainer = styled(Box)(({ theme }) => ({
   minHeight: "300px",
-  background: theme.palette.primary.main,
+  background: theme.palette.background.default,
   display: "flex",
   flexDirection: "column",
   justifyContent: "flex-start",

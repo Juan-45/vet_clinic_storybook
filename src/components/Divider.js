@@ -33,7 +33,7 @@ const Pin = styled(Box)(({ theme }) => ({
   marginLeft: "-60px",
   borderRadius: "100%",
   boxShadow: theme.shadows[6],
-  background: theme.palette.primary.main,
+  background: theme.palette.background.default,
 }));
 
 const PinText = styled(Typography)(({ theme }) => ({
