@@ -17,6 +17,8 @@ export const Playground = () => (
       display: "flex",
       justifyContent: "center",
       flexWrap: "wrap",
+      ///
+      paddingTop: "100vh",
     }}
   >
     <Divider.Template />
