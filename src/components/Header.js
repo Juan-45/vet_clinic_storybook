@@ -1,9 +1,6 @@
-import {
-  Container,
-  Background,
-  InnerContainer,
-  BottomCurve,
-} from "components/header/Styles";
+import { Container, InnerContainer } from "components/header/Styles";
+import BottomCurve from "components/BottomCurve";
+import Background from "components/header/Background";
 import PropTypes from "prop-types";
 
 const Header = ({ children, ...props }) => {

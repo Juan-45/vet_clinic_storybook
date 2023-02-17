@@ -2,7 +2,6 @@ import React from "react";
 import { Box } from "@mui/material";
 import ProminentTextSection from "components/ProminentTextSection";
 import {
-  Title,
   InnerContainer,
   ParagraphContainer,
   Paragraph,
@@ -12,7 +11,7 @@ import {
   Bold,
 } from "components/prominentTextSection/Styles";
 import PageLink from "components/PageLink";
-import { FlexRowCenter } from "components/CommonStyles";
+import { FlexRowCenter, Title } from "components/CommonStyles";
 import happy_dog_500x334_c from "stories/assets/happy-dog_500x334_c.jpg";
 import { styled } from "@mui/material/styles";
 

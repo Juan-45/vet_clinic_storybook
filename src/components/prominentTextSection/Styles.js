@@ -7,24 +7,6 @@ const Container = styled(Box)({
   flexWrap: "wrap",
 });
 
-const Title = styled(Typography)(({ theme }) => ({
-  fontFamily: "Staatliches",
-  position: "relative",
-  marginBottom: theme.spacing(8),
-  "&::after": {
-    content: "''",
-    position: "absolute",
-    display: "inline-block",
-    width: "100%",
-    height: "15px",
-    top: "calc(100% + 8px)",
-    left: 0,
-    background: theme.palette.ternary.medium,
-    transform: "skew(-25deg)",
-    boxShadow: theme.shadows[2],
-  },
-}));
-
 const InnerContainer = styled(Box)(({ theme }) => ({
   "&.innerContainerNoImg": {
     position: "relative",
@@ -114,7 +96,6 @@ const Bold = styled("span")({
 
 export {
   Container,
-  Title,
   InnerContainer,
   ParagraphContainer,
   Paragraph,
