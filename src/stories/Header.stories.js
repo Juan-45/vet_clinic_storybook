@@ -5,10 +5,9 @@ import {
   TextContainer,
   Blurb,
   SecondaryText,
-  HighlightBlue,
   LinkContainer,
 } from "components/header/Styles";
-import { HighlightRed } from "components/CommonStyles";
+import { HighlightRed, HighlightBlue } from "components/CommonStyles";
 import { Box } from "@mui/material";
 import * as NavBar from "stories/NavBar.stories";
 import home_1920x1110_c from "stories/assets/home_1920x1110_c.jpg";

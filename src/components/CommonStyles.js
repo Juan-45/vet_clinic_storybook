@@ -18,11 +18,23 @@ const LargeContainer = styled(Box)({
   maxWidth: "1200px",
 });
 
-const HighlightRed = styled("span")(({ theme }) => ({
-  color: theme.palette.error.main,
+const highlightCommon = {
   fontWeight: 600,
   textDecoration: "underline",
-}));
+};
+
+const HighlightRed = styled("span")(({ theme }) =>
+  mergician(highlightCommon, {
+    color: theme.palette.error.main,
+  })
+);
+
+const HighlightBlue = styled("span")(({ theme }) =>
+  mergician(highlightCommon, {
+    color: theme.palette.info.main,
+    textTransform: "uppercase",
+  })
+);
 
 const StyledLink = styled(Link)({
   display: "inline-block",
@@ -38,13 +50,11 @@ const LargeContainerFlex = styled(LargeContainer)({
   flexWrap: "wrap",
 });
 
-const ResponsiveItemsContainer = styled(Box)(({ theme }) => ({
+const ResponsiveItemsContainer = styled(Box)({
   width: "100%",
-  padding: theme.spacing(2),
-  paddingRight: "0px",
   display: "flex",
   flexWrap: "wrap",
-}));
+});
 
 const ResponsiveContainer = styled(Box, {
   shouldForwardProp: (prop) => prop !== "columns",
@@ -87,8 +97,10 @@ const StyledItemTitle = styled(Typography)(({ theme }) =>
   })
 );
 
-const ItemTitle = ({ children }) => (
-  <StyledItemTitle variant='h2'>{children}</StyledItemTitle>
+const ItemTitle = ({ children, ...props }) => (
+  <StyledItemTitle variant='h2' {...props}>
+    {children}
+  </StyledItemTitle>
 );
 
 const ItemDescription = styled(Typography)(({ theme }) =>
@@ -120,6 +132,7 @@ export {
   MediumContainer,
   LargeContainer,
   HighlightRed,
+  HighlightBlue,
   StyledLink,
   LargeContainerFlex,
   ResponsiveItemsContainer,
