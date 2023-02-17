@@ -50,11 +50,12 @@ const LargeContainerFlex = styled(LargeContainer)({
   flexWrap: "wrap",
 });
 
-const ResponsiveItemsContainer = styled(Box)({
+const ResponsiveItemsContainer = styled(Box)(({ theme }) => ({
   width: "100%",
   display: "flex",
   flexWrap: "wrap",
-});
+  paddingLeft: theme.spacing(2),
+}));
 
 const ResponsiveContainer = styled(Box, {
   shouldForwardProp: (prop) => prop !== "columns",
