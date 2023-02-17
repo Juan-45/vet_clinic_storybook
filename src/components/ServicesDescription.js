@@ -5,7 +5,7 @@ import {
 
 const ServicesDescription = ({ children }) => {
   return (
-    <LargeContainerFlex>
+    <LargeContainerFlex sx={{ marginBottom: "16px" }}>
       <ResponsiveItemsContainer>{children}</ResponsiveItemsContainer>
     </LargeContainerFlex>
   );
