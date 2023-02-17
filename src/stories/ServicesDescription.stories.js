@@ -8,6 +8,7 @@ import {
 } from "components/CommonStyles";
 import ServicesDescription from "components/ServicesDescription";
 import ServiceItem from "components/servicesDescription/ServiceItem";
+import ServiceSchedule from "components/servicesDescription/ServiceSchedule";
 import PageLink from "components/PageLink";
 import vaccination_500x333_c from "stories/assets/vaccination_500x333_c.jpg";
 
@@ -90,5 +91,7 @@ export const Template = () => (
         Solicitar turno
       </PageLink>
     </FlexRowCenter>
+    <Title variant='h1'>Horarios</Title>
+    <ServiceSchedule />
   </Box>
 );
