@@ -17,7 +17,7 @@ const InnerContainer = styled(Box)(({ theme }) => ({
   "&::after": {
     content: "''",
     position: "absolute",
-    zIndex: -1,
+    zIndex: 0,
     height: "calc(100% + 50px)",
     width: "80%",
     top: "-25px",
@@ -33,6 +33,8 @@ const InnerContainer = styled(Box)(({ theme }) => ({
 const InfoContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
+  position: "relative",
+  zIndex: 1,
   padding: theme.spacing(4),
   marginBottom: theme.spacing(5),
   background: theme.palette.ternary.medium,
@@ -61,7 +63,7 @@ const Days = styled(Description)(({ theme }) => ({
 
 const ServiceSchedule = () => {
   return (
-    <ResponsiveItemsContainer>
+    <ResponsiveItemsContainer sx={{ marginBottom: "40px" }}>
       <InnerContainer>
         <InfoContainer className='infoContainer'>
           <Title>Atención médica</Title>

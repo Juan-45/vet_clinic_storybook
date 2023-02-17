@@ -34,6 +34,7 @@ export const Template = () => (
       marginRight: "auto",
       padding: "16px",
       paddingTop: "150px",
+      background: "#e9f1f6",
     }}
   >
     <Title variant='h1'>Atención médica</Title>
@@ -80,18 +81,15 @@ export const Template = () => (
         </ItemDescription>
       </ServiceItem>
     </ServicesDescription>
+    <Title variant='h1'>Horarios</Title>
+    <ServiceSchedule />
     <FlexRowCenter>
       <PageLink
         to='/?path=/story/stories-mainservices--playground'
-        sx={{ marginRight: "32px" }}
+        sx={{ width: "300px", display: "inline-block" }}
       >
-        Ver todo
-      </PageLink>
-      <PageLink to='/?path=/story/stories-mainservices--playground'>
         Solicitar turno
       </PageLink>
     </FlexRowCenter>
-    <Title variant='h1'>Horarios</Title>
-    <ServiceSchedule />
   </Box>
 );
