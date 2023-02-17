@@ -124,13 +124,6 @@ const LinkContainer = styled(Box)({
   animation: `${ANIMATION_TIME}s ease ${FADE_DELAY}s forwards ${fade}`,
 });
 
-const HighlightBlue = styled("span")(({ theme }) => ({
-  color: theme.palette.info.main,
-  fontWeight: 600,
-  textDecoration: "underline",
-  textTransform: "uppercase",
-}));
-
 export {
   StyledImg,
   StyledPicture,
@@ -140,5 +133,4 @@ export {
   Blurb,
   SecondaryText,
   LinkContainer,
-  HighlightBlue,
 };
